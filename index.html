@@ -20,7 +20,7 @@
    recorrida como una traza de red: cada sección es un salto del paquete. */
 :root{
   --paper:#ECEFED; --paper-2:#E1E6E3; --ink:#141917; --ink-2:#4A534F; --faint:#9EA8A3; --line:#C3CBC7;
-  --teal:#5BBFB5; --amber:#E8B54A; --green:#95C990; --red:#E0594E; --violet:#B9A2E3; --blue:#86B3E8; --band-ink:#121715;
+  --teal:#5BBFB5; --amber:#E8B54A; --green:#95C990; --red:#E0594E; --violet:#B9A2E3; --blue:#86B3E8; --pink:#EE9DC2; --band-ink:#121715;
   --signal-net:#1E6E65; --signal-sw:#9A4E0E;
   --signal:var(--signal-net); --hero-a:var(--teal); --hero-b:var(--amber);
   --f-display:"Space Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
@@ -30,12 +30,12 @@
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --paper:#0D1110; --paper-2:#151B19; --ink:#E2E9E5; --ink-2:#A3AEA9; --faint:#4F5955; --line:#28312E;
-  --teal:#45AFA4; --amber:#DCA63D; --green:#79B474; --red:#D24E43; --violet:#9C85CF; --blue:#6B9AD3; --band-ink:#0D1110;
+  --teal:#45AFA4; --amber:#DCA63D; --green:#79B474; --red:#D24E43; --violet:#9C85CF; --blue:#6B9AD3; --pink:#CF6E9C; --band-ink:#0D1110;
   --signal-net:#6FD3C8; --signal-sw:#F2A65A;
   color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#0D1110; --paper-2:#151B19; --ink:#E2E9E5; --ink-2:#A3AEA9; --faint:#4F5955; --line:#28312E;
-  --teal:#45AFA4; --amber:#DCA63D; --green:#79B474; --red:#D24E43; --violet:#9C85CF; --blue:#6B9AD3; --band-ink:#0D1110;
+  --teal:#45AFA4; --amber:#DCA63D; --green:#79B474; --red:#D24E43; --violet:#9C85CF; --blue:#6B9AD3; --pink:#CF6E9C; --band-ink:#0D1110;
   --signal-net:#6FD3C8; --signal-sw:#F2A65A;
   color-scheme:dark}
 /* Vista Software: cambia el color de señal y las bandas del inicio */
@@ -348,7 +348,7 @@ const T = {
   p2:'En SITEC Software trabajé en una plataforma de cumplimiento AML: integré inicio de sesión único con Keycloak, escribí pruebas antes de cada liberación y diagnostiqué incidentes a partir de logs. Antes, en el Banco de Costa Rica, apoyé la gestión de accesos según las políticas de seguridad de la información del banco.',
   p3sw:'Lo que más me atrae es el backend: diseño de APIs RESTful, arquitectura por capas, autenticación con tokens, pruebas antes de liberar y diagnóstico con logs. Programo en C#, Java, Node.js, Python y PHP sobre Oracle, PostgreSQL y MySQL, y trabajo en equipos multidisciplinarios con Scrum y Kanban.',
   p3net:'Hoy construyo redes de proveedor en laboratorio, con IS-IS, MPLS, BGP, L3VPN y EVPN, y las trato como un sistema en producción: plan de direccionamiento, pruebas automáticas, procedimientos de cambio y runbooks de incidentes.',
-  factsT:'Lo verificable', eyeNet:'Enfoque · Ingeniería de redes IP', eyeSw:'Enfoque · Desarrollo full stack y backend', capNet:'AS 65000 · IS-IS + MPLS/LDP', hintNet:'clic = ping · cursor sobre un nodo', capSw:'Arquitectura de mis aplicaciones', hintSw:'clic = petición HTTP · cursor sobre una capa', priv:'Código privado', privUni:'No publicado', jumps:'saltos', layers:'capas', f1:'nodos en mi laboratorio IP/MPLS', f2:'pruebas automatizadas de red', f3:'documentos de políticas organizados en el BCR', f4:'entornos regulados: banca y cumplimiento AML', f5:'graduación oficial, UNA (plan completado en 2026)',
+  factsT:'Lo verificable', eyeNet:'Enfoque · Ingeniería de redes IP', eyeSw:'Enfoque · Desarrollo full stack y backend', capNet:'AS 65000 · IS-IS + MPLS/LDP', hintNet:'clic = ping · cursor sobre un nodo', capSw:'Mi plataforma de microservicios', hintSw:'clic = petición HTTP · cursor sobre una capa', priv:'Código privado', privUni:'No publicado', jumps:'saltos', layers:'capas', f1:'nodos en mi laboratorio IP/MPLS', f2:'pruebas automatizadas de red', f3:'documentos de políticas organizados en el BCR', f4:'entornos regulados: banca y cumplimiento AML', f5:'graduación oficial, UNA (plan completado en 2026)',
   h2b:'Este es mi trabajo', legNet:'relevancia para un puesto de redes IP', legSw:'relevancia para un puesto full stack o backend', alsoT:'Trayectoria',
   kCtx:'Contexto', kRole:'Mi rol', kStack:'Herramientas', kWhat:'Desglose', repo:'Ver repositorio',
   h2c:'Mi pila, por capas', h2d:'¿Hablamos?', copy:'Copiar', copied:'Copiado',
@@ -369,7 +369,7 @@ const T = {
   p2:'At SITEC Software I worked on an AML compliance platform: I integrated single sign-on with Keycloak, wrote tests before every release and diagnosed incidents from logs. Before that, at Banco de Costa Rica, I supported user access management under the bank’s information security policies.',
   p3sw:'What draws me most is the backend: RESTful API design, layered architecture, token-based authentication, testing before release and diagnosing with logs. I code in C#, Java, Node.js, Python and PHP on Oracle, PostgreSQL and MySQL, and I work in cross-functional Scrum and Kanban teams.',
   p3net:'Today I build service provider networks in the lab, with IS-IS, MPLS, BGP, L3VPN and EVPN, and I treat them like a production system: an addressing plan, automated tests, change procedures and incident runbooks.',
-  factsT:'What you can verify', eyeNet:'Focus · IP network engineering', eyeSw:'Focus · Full-stack and backend development', capNet:'AS 65000 · IS-IS + MPLS/LDP', hintNet:'click = ping · hover a node', capSw:'How my applications are built', hintSw:'click = HTTP request · hover a layer', priv:'Private code', privUni:'Not published', jumps:'hops', layers:'layers', f1:'nodes in my IP/MPLS lab', f2:'automated network tests', f3:'policy documents organized at BCR', f4:'regulated environments: banking and AML compliance', f5:'official graduation, UNA (coursework completed in 2026)',
+  factsT:'What you can verify', eyeNet:'Focus · IP network engineering', eyeSw:'Focus · Full-stack and backend development', capNet:'AS 65000 · IS-IS + MPLS/LDP', hintNet:'click = ping · hover a node', capSw:'My microservices platform', hintSw:'click = HTTP request · hover a layer', priv:'Private code', privUni:'Not published', jumps:'hops', layers:'layers', f1:'nodes in my IP/MPLS lab', f2:'automated network tests', f3:'policy documents organized at BCR', f4:'regulated environments: banking and AML compliance', f5:'official graduation, UNA (coursework completed in 2026)',
   h2b:'This is my work', legNet:'relevance for an IP network role', legSw:'relevance for a full-stack or backend role', alsoT:'Background',
   kCtx:'Context', kRole:'My role', kStack:'Tools', kWhat:'Breakdown', repo:'View repository',
   h2c:'My stack, layer by layer', h2d:'Shall we talk?', copy:'Copy', copied:'Copied',
@@ -396,6 +396,17 @@ const P = [
          en:['Dual-stack IS-IS core with MPLS/LDP; P2 runs BGP-free.','VPNv4/VPNv6 L3VPN for two customers (OSPF and eBGP as PE-CE) and EVPN-VXLAN L2VPN.','Customer access with 802.1Q VLANs, STP over redundant links and NAT.','Health check, config backups with diffs, simulated failures and a 7-scenario runbook.']},
    metrics:[['18',{es:'nodos',en:'nodes'}],['53',{es:'pruebas',en:'tests'}],['6',{es:'documentos técnicos',en:'technical docs'}]],
    link:'https://github.com/Melany05AG/sp-mpls-lab' },
+ { id:'micro', yr:'2026', band:'--pink', rel:{net:2, sw:3},
+   name:{es:'Plataforma de cursos · Microservicios', en:'Course platform · Microservices'},
+   sub:{es:'Proyecto personal · backend con microservicios', en:'Personal project · microservices backend'},
+   ctx:{es:'Backend completo de una plataforma de cursos en línea, dividido en cinco servicios independientes detrás de un API Gateway, cada uno con su propia base de datos.',
+        en:'Complete backend for an online course platform, split into five independent services behind an API Gateway, each with its own database.'},
+   role:{es:'Diseño de la arquitectura, desarrollo de los cinco servicios, pruebas, contenedores y pipelines de CI/CD. Proyecto individual.', en:'Architecture design, development of all five services, tests, containers and CI/CD pipelines. Solo project.'},
+   stack:['Node.js','Express','Fastify','Python · FastAPI','SQL Server','JWT','Swagger / OpenAPI','Docker','Kubernetes','Jenkins · SonarQube'],
+   what:{es:['API Gateway con enrutamiento, límite de intentos de inicio de sesión, x-request-id y Swagger unificado.','Inscripciones con control de cupo en una transacción SERIALIZABLE y llamadas entre servicios con tiempo de espera y reintento.','Autenticación JWT con roles y permisos por dueño, verificada en cada servicio.','47 pruebas automatizadas, ESLint y Ruff sin advertencias, CI con GitHub Actions y Jenkins + SonarQube.'],
+         en:['API Gateway with routing, login rate limiting, x-request-id and unified Swagger docs.','Enrollments with capacity control in a SERIALIZABLE transaction, and service-to-service calls with timeouts and retries.','JWT authentication with roles and ownership checks, verified in every service.','47 automated tests, ESLint and Ruff with zero warnings, CI with GitHub Actions and Jenkins + SonarQube.']},
+   metrics:[['5',{es:'microservicios',en:'microservices'}],['47',{es:'pruebas',en:'tests'}],['3',{es:'decisiones de arquitectura (ADR)',en:'architecture decision records'}]],
+   link:'https://github.com/Melany05AG/plataforma-cursos-microservicios' },
  { id:'aml', yr:'2026', band:'--amber', rel:{net:2, sw:3},
    name:{es:'Sistema de Capacitación AML', en:'AML Training System'},
    sub:{es:'SITEC Software · práctica profesional', en:'SITEC Software · professional internship'},
@@ -441,7 +452,7 @@ const P = [
          en:['Fan registration with client and server validation, and prepared statements.','Album and concert gallery with modals and an embedded YouTube player.','Background video and welcome audio with HTML5.','Contact form with field and email-format validation.']},
    link:'https://github.com/Melany05AG/gnr-fanclub' }
 ];
-const ORDER = {net:['splab','aml','micitt','renta','klondike','gnr'], sw:['aml','micitt','klondike','renta','gnr','splab']};
+const ORDER = {net:['splab','micro','aml','micitt','renta','klondike','gnr'], sw:['micro','aml','micitt','klondike','renta','gnr','splab']};
 const F = {
  net:[['18',{es:'nodos en mi laboratorio IP/MPLS',en:'nodes in my IP/MPLS lab'}],
       ['53',{es:'pruebas automatizadas de red',en:'automated network tests'}],
@@ -449,8 +460,8 @@ const F = {
       ['2',{es:'cursos CCNAv7 completados (Cisco NetAcad)',en:'CCNAv7 courses completed (Cisco NetAcad)'}],
       ['200+',{es:'documentos de políticas organizados en el BCR',en:'policy documents organized at BCR'}]],
  sw:[['5',{es:'meses como desarrolladora full-stack .NET en SITEC',en:'months as a full-stack .NET developer at SITEC'}],
-     ['4',{es:'módulos construidos en la plataforma AML',en:'modules built on the AML platform'}],
-     ['6',{es:'proyectos con código, 4 públicos en GitHub',en:'projects with code, 4 public on GitHub'}],
+     ['47',{es:'pruebas automatizadas en mis microservicios',en:'automated tests across my microservices'}],
+     ['7',{es:'proyectos con código, 5 públicos en GitHub',en:'projects with code, 5 public on GitHub'}],
      ['3',{es:'motores de base de datos: Oracle, MySQL, PostgreSQL',en:'database engines: Oracle, MySQL, PostgreSQL'}],
      ['2',{es:'metodologías ágiles en equipo: Scrum y Kanban',en:'agile team methods: Scrum and Kanban'}]]
 };
@@ -473,11 +484,12 @@ const LAYERS = {
  ['OPS','--red',{es:'Operación',en:'Operations'},['Linux','Containerlab','FRRouting','Python','pytest','Git','logs · runbooks','Scrum · Kanban']]],
  sw:[
  ['UI','--violet',{es:'Frontend',en:'Frontend'},['React 18 · hooks','Vite','Next.js','TypeScript','JavaScript ES6+','Razor','Bootstrap','HTML5 · CSS3']],
- ['API','--amber',{es:'Backend',en:'Backend'},['C# · ASP.NET Core Web API / MVC','Java · Spring Boot','Node.js','Python','PHP 8','APIs RESTful · SOAP','microservicios REST','arquitectura por capas','inyección de dependencias','AWS Lambda · API Gateway']],
+ ['API','--amber',{es:'Backend',en:'Backend'},['Node.js · Express · Fastify','C# · ASP.NET Core Web API / MVC','Python · FastAPI','Java · Spring Boot','PHP 8','APIs RESTful · SOAP','microservicios · API Gateway','arquitectura por capas','inyección de dependencias','AWS Lambda · API Gateway']],
  ['DATA','--blue',{es:'Datos',en:'Data'},['Oracle · PL/SQL','PostgreSQL','MySQL','EF Core · migraciones','Dapper','procedimientos almacenados']],
  ['AUTH','--red',{es:'Seguridad',en:'Security'},['Keycloak','OpenID Connect · OAuth 2.0','JWT · cookie HttpOnly','RBAC']],
  ['AGILE','--violet',{es:'Forma de trabajo',en:'Ways of working'},['Scrum','Kanban','levantamiento de requerimientos','UML · modelo entidad-relación','Git']],
  ['QA','--green',{es:'Calidad',en:'Quality'},['MSTest','Moq','pytest','Serilog','casos de prueba','depuración']],
+ ['DEVOPS','--blue',{es:'Contenedores y CI/CD',en:'Containers and CI/CD'},['Docker','Docker Compose','Kubernetes','GitHub Actions','Jenkins','SonarQube','ESLint · Ruff']],
  ['NET','--teal',{es:'Lo que hay debajo',en:'What runs underneath'},['TCP/IP','VLAN','OSPF · BGP','MPLS','Linux','Git · CI']]]
 };
 
@@ -607,14 +619,16 @@ const GRAPHS = {
   ['pe1','ce-a1'],['pe1','ce-b1'],['pe2','ce-b2'],['pe2','h-c1'],['pe3','ce-a2'],['pe3','h-c2'],
   ['ce-a1','sw-a1'],['sw-a1','sw-a2'],['ce-b1','h-b1'],['ce-b2','h-b2']] },
  sw:{ start:'user', nodes:[
-  ['user',.08,.50,'USUARIO','navegador',1],
-  ['react',.30,.26,'REACT','React 18 · Vite',1],['razor',.30,.74,'RAZOR','MVC · Bootstrap',1],
-  ['api',.52,.50,'API','ASP.NET Core',1],['auth',.52,.12,'AUTH','Keycloak · OIDC · JWT',1],
-  ['svc',.72,.30,'SERVICIOS','cursos · exámenes · insignias',1],['audit',.72,.70,'AUDITORÍA','registro de acciones',1],
-  ['oracle',.92,.20,'ORACLE','Dapper · PL/SQL',1],['mysql',.92,.52,'MYSQL','EF Core',1],['logs',.92,.86,'SERILOG','logs de diagnóstico',1],
-  ['tests',.30,.92,'TESTS','MSTest · Moq',1]],
-  edges:[['user','react'],['user','razor'],['user','auth'],['react','api'],['razor','api'],['api','auth'],['api','svc'],['api','audit'],
-  ['svc','oracle'],['svc','mysql'],['audit','mysql'],['svc','logs'],['audit','logs'],['tests','razor'],['tests','api']] }
+  ['user',.06,.50,'CLIENTE','web / móvil',1],
+  ['gw',.30,.50,'GATEWAY','Express · límites · Swagger',1],
+  ['auth',.56,.12,'AUTH','Express · JWT',1],
+  ['catalog',.56,.38,'CATALOG','Fastify · cursos',1],
+  ['enroll',.56,.64,'ENROLLMENT','Express · inscripciones',1],
+  ['notif',.56,.90,'NOTIFICATION','Python · FastAPI',1],
+  ['sql',.90,.38,'SQL SERVER','una base por servicio',1],
+  ['sqlite',.90,.90,'SQLITE','notificaciones',1]],
+  edges:[['user','gw'],['gw','auth'],['gw','catalog'],['gw','enroll'],['gw','notif'],['enroll','catalog'],['enroll','notif'],
+  ['auth','sql'],['catalog','sql'],['enroll','sql'],['notif','sqlite']] }
 };
 let N=[], E=[], idx={}, adj=[];
 function setGraph(v){ const g=GRAPHS[v]; N=g.nodes; E=g.edges; idx=Object.fromEntries(N.map((n,i)=>[n[0],i]));
