@@ -1,791 +1,716 @@
-Index · HTML
-Copy
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Melany Arias · Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #03060f;
-      --surface: #060d1a;
-      --card: #0a1525;
-      --accent: #00d4ff;
-      --accent2: #0077ff;
-      --accent3: #00aaff;
-      --text: #e0f0ff;
-      --muted: #7aa8cc;
-      --border: rgba(0, 170, 255, 0.18);
-      --glow: rgba(0, 212, 255, 0.25);
-      --glow2: rgba(0, 119, 255, 0.2);
-    }
- 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
- 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      overflow-x: hidden;
-    }
- 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.35;
-    }
- 
-    .orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(90px);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .orb-1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(0,170,255,0.14) 0%, transparent 70%); top: -150px; right: -150px; }
-    .orb-2 { width: 450px; height: 450px; background: radial-gradient(circle, rgba(0,119,255,0.12) 0%, transparent 70%); bottom: 15%; left: -120px; }
-    .orb-3 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); }
- 
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: linear-gradient(rgba(0,170,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(0,170,255,0.025) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
-    }
- 
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1.2rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(3,6,15,0.75);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
- 
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 0 8px rgba(0,212,255,0.5));
-    }
- 
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
- 
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
- 
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      transition: color 0.2s, text-shadow 0.2s;
-    }
- 
-    .nav-links a:hover {
-      color: var(--accent);
-      text-shadow: 0 0 12px rgba(0,212,255,0.7);
-    }
- 
-    .lang-toggle {
-      display: flex;
-      align-items: center;
-      background: rgba(0,170,255,0.07);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 3px;
-      gap: 2px;
-    }
- 
-    .lang-btn {
-      padding: 0.25rem 0.7rem;
-      border-radius: 100px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-family: 'DM Sans', sans-serif;
-    }
- 
-    .lang-btn.active {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #03060f;
-      font-weight: 700;
-      box-shadow: 0 0 10px rgba(0,212,255,0.4);
-    }
- 
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 8rem 2rem 4rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
- 
-    .hero-content { max-width: 700px; }
- 
-    .hero-tag {
-      display: inline-block;
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--border);
-      padding: 0.3rem 1rem;
-      border-radius: 100px;
-      margin-bottom: 2rem;
-      animation: fadeUp 0.6s ease both;
-      box-shadow: 0 0 16px rgba(0,212,255,0.15), inset 0 0 16px rgba(0,212,255,0.05);
-    }
- 
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      font-weight: 900;
-      line-height: 1.05;
-      margin-bottom: 1.5rem;
-      animation: fadeUp 0.6s 0.1s ease both;
-    }
- 
-    .hero h1 .name {
-      display: block;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 0 20px rgba(0,212,255,0.4));
-    }
- 
-    .hero-desc {
-      font-size: 1.15rem;
-      color: var(--muted);
-      line-height: 1.8;
-      max-width: 540px;
-      margin-bottom: 2.5rem;
-      animation: fadeUp 0.6s 0.2s ease both;
-    }
- 
-    .hero-ctas {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      animation: fadeUp 0.6s 0.3s ease both;
-    }
- 
-    .btn {
-      padding: 0.8rem 1.8rem;
-      border-radius: 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.25s;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
- 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #03060f;
-      font-weight: 700;
-    }
- 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(0,212,255,0.5), 0 0 60px rgba(0,212,255,0.2);
-    }
- 
-    .btn-secondary {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
- 
-    .btn-secondary:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(0,212,255,0.2);
-    }
- 
-    .scroll-line {
-      position: absolute;
-      bottom: 3rem;
-      left: 0;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      color: var(--muted);
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      animation: fadeUp 0.6s 0.5s ease both;
-    }
- 
-    .scroll-line::before {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 1px;
-      background: var(--accent);
-      box-shadow: 0 0 8px var(--accent);
-    }
- 
-    section {
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 6rem 2rem;
-    }
- 
-    .section-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      text-shadow: 0 0 12px rgba(0,212,255,0.6);
-    }
- 
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 700;
-      margin-bottom: 3.5rem;
-      line-height: 1.2;
-    }
- 
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
- 
-    .about-text p {
-      color: var(--muted);
-      line-height: 1.9;
-      margin-bottom: 1.2rem;
-      font-size: 1.05rem;
-    }
- 
-    .about-text strong { color: var(--text); font-weight: 500; }
- 
-    .info-cards { display: flex; flex-direction: column; gap: 1rem; }
- 
-    .info-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.2rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    }
- 
-    .info-card:hover {
-      border-color: var(--accent);
-      transform: translateX(4px);
-      box-shadow: 0 0 20px rgba(0,212,255,0.1), inset 0 0 20px rgba(0,212,255,0.03);
-    }
- 
-    .info-icon {
-      width: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .info-icon svg { width: 22px; height: 22px; fill: var(--accent); opacity: 0.75; }
- 
-    .info-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.2rem;
-    }
- 
-    .info-value { font-size: 0.95rem; color: var(--text); font-weight: 500; }
- 
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 1rem;
-    }
- 
-    .skill-chip {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem;
-      text-align: center;
-      transition: all 0.25s;
-      cursor: default;
-      position: relative;
-      overflow: hidden;
-    }
- 
-    .skill-chip::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(0,212,255,0.05), transparent);
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
- 
-    .skill-chip:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0,212,255,0.15), 0 0 40px rgba(0,212,255,0.05);
-    }
- 
-    .skill-chip:hover::before { opacity: 1; }
- 
-    .skill-icon { margin-bottom: 0.5rem; display: flex; justify-content: center; align-items: center; height: 2.2rem; }
-    .skill-icon img { width: 2rem; height: 2rem; object-fit: contain; filter: brightness(0) invert(0.85); transition: filter 0.25s; }
-    .skill-chip:hover .skill-icon img { filter: brightness(0) invert(1); }
- 
-    .skill-name { font-size: 0.85rem; color: var(--muted); font-weight: 500; }
- 
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
- 
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
- 
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      transform: scaleX(0);
-      transition: transform 0.3s;
-      box-shadow: 0 0 16px var(--accent);
-    }
- 
-    .project-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(0,212,255,0.04) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
- 
-    .project-card:hover { border-color: rgba(0,212,255,0.4); transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 40px rgba(0,212,255,0.08); }
-    .project-card:hover::before { transform: scaleX(1); }
-    .project-card:hover::after { opacity: 1; }
- 
-    .project-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.8rem;
-      color: var(--text);
-      position: relative;
-      z-index: 1;
-    }
- 
-    .project-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.7;
-      flex: 1;
-      margin-bottom: 1.5rem;
-      position: relative;
-      z-index: 1;
-    }
- 
-    .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; position: relative; z-index: 1; }
- 
-    .tag {
-      font-size: 0.75rem;
-      padding: 0.25rem 0.75rem;
-      border-radius: 100px;
-      background: rgba(0,212,255,0.08);
-      color: var(--accent);
-      border: 1px solid rgba(0,212,255,0.2);
-    }
- 
-    .project-arrow {
-      position: absolute;
-      top: 1.5rem; right: 1.5rem;
-      color: var(--muted);
-      font-size: 1.2rem;
-      transition: all 0.2s;
-      z-index: 2;
-    }
- 
-    .project-card:hover .project-arrow {
-      color: var(--accent);
-      transform: translate(2px,-2px);
-      text-shadow: 0 0 12px var(--accent);
-    }
- 
-    .contact-box {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 4rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
- 
-    .contact-box::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(0,212,255,0.07) 0%, transparent 60%);
-      pointer-events: none;
-    }
- 
-    .contact-box::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 10%; right: 10%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), var(--accent2), var(--accent), transparent);
-      box-shadow: 0 0 20px var(--accent);
-    }
- 
-    .contact-box h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 1;
-    }
- 
-    .contact-box p {
-      color: var(--muted);
-      font-size: 1.05rem;
-      margin-bottom: 2.5rem;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-      position: relative;
-      z-index: 1;
-    }
- 
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 1;
-    }
- 
-    footer {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 2rem;
-      color: var(--muted);
-      font-size: 0.85rem;
-      border-top: 1px solid var(--border);
-    }
- 
-    footer span { color: var(--accent); text-shadow: 0 0 10px rgba(0,212,255,0.5); }
- 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
- 
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
- 
-    @media (max-width: 768px) {
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .nav-links { display: none; }
-      .contact-box { padding: 2.5rem 1.5rem; }
-      .hero h1 { font-size: 2.8rem; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Melany Arias Guadamuz · Portafolio</title>
+<meta name="description" content="Portafolio de Melany Arias Guadamuz: ingeniería de redes IP/MPLS y desarrollo full stack (.NET, Java, React, SQL). Costa Rica.">
+<meta name="author" content="Melany Arias Guadamuz">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Melany Arias Guadamuz · Portafolio">
+<meta property="og:description" content="Redes IP/MPLS y desarrollo full stack. Proyectos, trayectoria y contacto.">
+<meta property="og:url" content="https://melany05ag.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23141917'/%3E%3Crect x='6' y='13' width='20' height='6' fill='%235BBFB5'/%3E%3C/svg%3E">
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap">
+<style>
+/* Layout: una hoja de CV editorial (letras espaciadas, cascada de proyectos con bandas de color)
+   recorrida como una traza de red: cada sección es un salto del paquete. */
+:root{
+  --paper:#ECEFED; --paper-2:#E1E6E3; --ink:#141917; --ink-2:#4A534F; --faint:#9EA8A3; --line:#C3CBC7;
+  --teal:#5BBFB5; --amber:#E8B54A; --green:#95C990; --red:#E0594E; --violet:#B9A2E3; --blue:#86B3E8; --band-ink:#121715;
+  --signal-net:#1E6E65; --signal-sw:#9A4E0E;
+  --signal:var(--signal-net); --hero-a:var(--teal); --hero-b:var(--amber);
+  --f-display:"Space Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --f-body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --track:.32em;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0D1110; --paper-2:#151B19; --ink:#E2E9E5; --ink-2:#A3AEA9; --faint:#4F5955; --line:#28312E;
+  --teal:#45AFA4; --amber:#DCA63D; --green:#79B474; --red:#D24E43; --violet:#9C85CF; --blue:#6B9AD3; --band-ink:#0D1110;
+  --signal-net:#6FD3C8; --signal-sw:#F2A65A;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0D1110; --paper-2:#151B19; --ink:#E2E9E5; --ink-2:#A3AEA9; --faint:#4F5955; --line:#28312E;
+  --teal:#45AFA4; --amber:#DCA63D; --green:#79B474; --red:#D24E43; --violet:#9C85CF; --blue:#6B9AD3; --band-ink:#0D1110;
+  --signal-net:#6FD3C8; --signal-sw:#F2A65A;
+  color-scheme:dark}
+/* Vista Software: cambia el color de señal y las bandas del inicio */
+:root[data-view="sw"]{--signal:var(--signal-sw); --hero-a:var(--violet); --hero-b:var(--amber)}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper); color:var(--ink); font:400 16px/1.6 var(--f-body);
+  background-image:radial-gradient(var(--line) .8px, transparent .8px); background-size:22px 22px;
+  overflow-x:hidden}
+body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); z-index:30; background:var(--paper)}
+a{color:inherit}
+::selection{background:var(--teal); color:var(--band-ink)}
+:focus-visible{outline:2px solid var(--signal); outline-offset:3px}
+.wrap{max-width:1180px; margin:0 auto; padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px))}
+.lbl{font:700 11px/1.2 var(--f-display); letter-spacing:var(--track); text-transform:uppercase}
+
+/* ---------- barra superior ---------- */
+.top{position:sticky; top:env(safe-area-inset-top,0px); z-index:20; background:color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter:blur(6px); border-bottom:1px solid var(--line)}
+.top .wrap{display:flex; align-items:center; gap:16px; padding-block:12px; flex-wrap:wrap}
+.top .who{flex:1; min-width:0; color:var(--ink-2)}
+.seg{display:inline-flex; border:1px solid var(--ink); font:700 10.5px/1 var(--f-display); letter-spacing:.2em}
+.seg button{all:unset; cursor:pointer; padding:7px 10px; text-transform:uppercase}
+.seg button[aria-pressed="true"]{background:var(--ink); color:var(--paper)}
+.seg button:focus-visible{outline:2px solid var(--signal)}
+.view-lbl{color:var(--ink-2)}
+
+/* ---------- riel traceroute ---------- */
+.trace{position:fixed; left:max(14px, env(safe-area-inset-left,0px)); top:50%; transform:translateY(-50%); z-index:15;
+  display:flex; flex-direction:column; gap:14px; font:500 11px/1 var(--f-mono)}
+.trace::before{content:""; position:absolute; left:4px; top:4px; bottom:4px; width:1px; background:var(--line)}
+.trace .pkt{position:absolute; left:1px; width:7px; height:7px; background:var(--signal); top:0; transition:top .25s}
+.trace a{position:relative; display:flex; gap:10px; align-items:center; text-decoration:none; color:var(--faint); padding-left:18px}
+.trace a span.h{width:14px; text-align:right; font-variant-numeric:tabular-nums}
+.trace a.on{color:var(--ink)}
+.trace a.done span.s::after{content:" ✓"; color:var(--signal)}
+.trace a:not(.done) span.s::after{content:" *"}
+@media (max-width:1320px){.trace{display:none}}
+.prog{position:fixed; top:env(safe-area-inset-top,0px); left:0; height:2px; width:0; background:var(--signal); z-index:25}
+
+/* ---------- hero ---------- */
+.hero{position:relative; padding-block:56px 40px; border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:24px; align-items:center}
+.hero h1{margin:0; font:700 clamp(19px,2.5vw,30px)/1.55 var(--f-display); letter-spacing:var(--track); text-transform:uppercase; text-wrap:balance}
+.hero .paths{margin-top:34px; display:grid; gap:12px}
+.path{all:unset; cursor:pointer; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; font:700 clamp(14px,1.5vw,17px)/1.3 var(--f-display);
+  letter-spacing:.28em; text-transform:uppercase}
+.path .pre{color:var(--ink-2); font-weight:400}
+.path .tgt{position:relative; padding:6px 10px; color:var(--band-ink); background:var(--hero-a); transition:transform .2s, background .4s}
+.path.b .tgt{background:var(--hero-b)}
+.eyebrow{display:inline-block; margin-bottom:18px; padding:5px 8px; border:1px solid var(--signal); color:var(--signal); transition:color .4s, border-color .4s}
+.path .tgt::after{content:"→"; margin-left:12px}
+.path:hover .tgt,.path:focus-visible .tgt{transform:translateX(6px)}
+.hero .intro{margin-top:30px; max-width:58ch; color:var(--ink-2); font-size:16.5px}
+.hero .intro b{color:var(--ink); font-weight:600}
+.netbox{position:relative; aspect-ratio:1/0.9; max-width:100%; border:1px solid var(--line); background:color-mix(in srgb,var(--paper-2) 70%, transparent)}
+.netbox canvas{position:absolute; inset:0; width:100%; height:100%; cursor:crosshair}
+.netbox .cap{position:absolute; left:10px; right:10px; bottom:8px; display:flex; justify-content:space-between; gap:8px; font:400 11px/1.3 var(--f-mono); color:var(--ink-2); pointer-events:none}
+.netbox .corner{position:absolute; width:12px; height:12px; border:1.5px solid var(--ink)}
+.netbox .c1{left:-1px; top:-1px; border-right:0; border-bottom:0}.netbox .c2{right:-1px; top:-1px; border-left:0; border-bottom:0}
+.netbox .c3{left:-1px; bottom:-1px; border-right:0; border-top:0}.netbox .c4{right:-1px; bottom:-1px; border-left:0; border-top:0}
+.netbox .tip{position:absolute; left:10px; top:8px; font:500 11px/1.4 var(--f-mono); color:var(--ink); pointer-events:none}
+@media (max-width:860px){.hero .wrap{grid-template-columns:minmax(0,1fr)} .netbox{aspect-ratio:1/0.8}}
+
+/* ---------- secciones ---------- */
+section.s{padding-block:72px 40px; border-bottom:1px solid var(--line); scroll-margin-top:56px}
+.s-head{display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap; margin-bottom:36px}
+.s-head h2{margin:0; font:700 clamp(17px,2vw,22px)/1.3 var(--f-display); letter-spacing:var(--track); text-transform:uppercase}
+.s-head .hop{color:var(--ink-2)}
+.folio{display:flex; justify-content:space-between; margin-top:48px; color:var(--faint)}
+
+/* perfil */
+.profile{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,.9fr); gap:28px}
+.profile p{margin:0; font-size:14.5px; line-height:1.7; color:var(--ink-2)}
+.profile p:first-letter{font:700 1.5em/1 var(--f-display); color:var(--ink)}
+.facts{border-left:1px solid var(--ink); padding-left:20px; display:grid; gap:14px; align-content:start}
+.facts .f{display:grid; grid-template-columns:66px minmax(0,1fr); gap:14px; align-items:baseline; font:400 13px/1.4 var(--f-mono)}
+.facts .n{font:700 21px/1 var(--f-display); font-variant-numeric:tabular-nums; white-space:nowrap}
+.facts .f{animation:factIn .45s ease-out both}
+@keyframes factIn{from{transform:translateX(-8px)}}
+.facts .t{color:var(--ink-2)}
+@media (max-width:960px){.profile{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media (max-width:620px){.profile{grid-template-columns:minmax(0,1fr)} .facts{border-left:0; border-top:1px solid var(--ink); padding:18px 0 0}}
+
+/* cascada */
+.legend{display:flex; gap:18px; flex-wrap:wrap; color:var(--ink-2); font:400 12px/1.3 var(--f-mono)}
+.cascade{list-style:none; margin:0; padding:0}
+.item{border-top:1px dashed var(--line)}
+.rowwrap{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:14px; align-items:start; padding:16px 6px}
+.row{all:unset; box-sizing:border-box; cursor:pointer; display:grid; grid-template-columns:84px minmax(0,1fr); gap:18px; align-items:start; min-width:0}
+.row:focus-visible{outline:2px solid var(--signal)}
+.side{display:flex; flex-direction:column; align-items:flex-end; gap:8px; padding-top:6px}
+.gitl{font:700 10.5px/1 var(--f-display); letter-spacing:.18em; text-transform:uppercase; text-decoration:none; padding:6px 8px; border:1px solid var(--ink); white-space:nowrap}
+.gitl:hover,.gitl:focus-visible{background:var(--ink); color:var(--paper)}
+.gitl.priv{border-style:dashed; color:var(--ink-2); border-color:var(--faint)}
+.yr{font:700 14px/1.9 var(--f-display); letter-spacing:.25em; color:var(--faint); font-variant-numeric:tabular-nums}
+.name{display:inline; font:700 clamp(15px,2vw,23px)/1.7 var(--f-display); letter-spacing:.24em; text-transform:uppercase;
+  color:var(--band-ink); padding:1px 8px; box-decoration-break:clone; -webkit-box-decoration-break:clone; position:relative;
+  background:linear-gradient(100deg, transparent 40%, rgba(255,255,255,.55) 50%, transparent 60%) no-repeat, var(--band);
+  background-size:250% 100%, auto; background-position:200% 0, 0 0}
+.item.scan .name{animation:sweep 1.1s ease-out 1}
+@keyframes sweep{from{background-position:200% 0,0 0} to{background-position:-60% 0,0 0}}
+.sub{display:block; margin-top:4px; font:italic 400 14px/1.4 var(--f-mono); color:var(--ink)}
+.bars{display:flex; gap:3px; align-items:flex-end; height:18px}
+.bars i{display:block; width:5px; background:var(--line)}
+.bars i:nth-child(1){height:6px}.bars i:nth-child(2){height:11px}.bars i:nth-child(3){height:16px}
+.bars i.on{background:var(--ink)}
+.row:hover .name{filter:saturate(1.25)}
+.row .chev{display:inline-block; margin-left:10px; font:400 14px var(--f-mono); color:var(--ink-2); transition:transform .25s}
+.item.open .chev{transform:rotate(90deg)}
+.detail{display:grid; grid-template-rows:0fr; transition:grid-template-rows .35s ease}
+.item.open .detail{grid-template-rows:1fr}
+.detail > div{overflow:hidden; min-width:0}
+.dgrid{display:grid; grid-template-columns:84px minmax(0,1.1fr) minmax(0,1fr); gap:18px; padding:4px 6px 26px}
+.dgrid .k{display:block; margin-bottom:6px; color:var(--ink-2)}
+.dgrid p{margin:0 0 14px; font-size:14.5px; max-width:60ch}
+.dgrid ul{margin:0; padding-left:18px; font-size:14.5px; display:grid; gap:6px}
+.chips{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px}
+.chip{font:500 11.5px/1 var(--f-mono); padding:5px 7px; border:1px solid var(--ink-2)}
+.metrics{display:flex; gap:22px; flex-wrap:wrap; margin-bottom:12px}
+.metrics div{font:400 12px/1.3 var(--f-mono); color:var(--ink-2)}
+.metrics b{display:block; font:700 24px/1.1 var(--f-display); color:var(--ink)}
+.ext{font:700 11px/1 var(--f-display); letter-spacing:.2em; text-transform:uppercase; text-decoration:none; border-bottom:1.5px solid var(--ink); padding-bottom:3px}
+.ext:hover{color:var(--signal); border-color:var(--signal)}
+@media (max-width:760px){.row{grid-template-columns:minmax(0,1fr)}.row .yr{line-height:1}.dgrid{grid-template-columns:minmax(0,1fr)}.dgrid .sp{display:none}}
+
+.also{margin-top:30px}
+.also h3{margin:0 0 6px; color:var(--ink-2)}
+.ghost{display:grid; grid-template-columns:84px minmax(0,1fr); gap:18px; padding:9px 6px; border-top:1px dashed var(--line); transition:color .2s}
+.ghost .gn{font:700 clamp(13px,1.5vw,16px)/1.5 var(--f-display); letter-spacing:.24em; text-transform:uppercase; color:var(--faint); transition:color .2s}
+.ghost .gs{display:block; font:italic 400 13px/1.4 var(--f-mono); color:var(--faint); transition:color .2s}
+.ghost:hover .gn,.ghost:hover .gs,.ghost:hover .yr{color:var(--ink)}
+@media (max-width:760px){.ghost{grid-template-columns:minmax(0,1fr); gap:2px}}
+
+/* pila de capas */
+.stack{display:grid; gap:8px; perspective:900px}
+.layer{display:grid; grid-template-columns:96px 190px minmax(0,1fr); gap:18px; align-items:center; padding:14px 16px;
+  border:1px solid var(--ink); background:var(--paper); transition:transform .25s, opacity .25s, background .25s; cursor:default}
+.layer .ln{font:700 13px/1 var(--f-display); letter-spacing:.2em}
+.layer .lt{font:700 12px/1.3 var(--f-display); letter-spacing:.2em; text-transform:uppercase}
+.layer .lc{display:flex; flex-wrap:wrap; gap:6px}
+.stack:hover .layer,.stack.focus .layer{opacity:.42}
+.stack .layer:hover,.stack .layer.act{opacity:1; transform:translateX(14px); background:var(--paper-2)}
+.layer .sw{width:10px; height:10px; display:inline-block; margin-right:8px; background:var(--c)}
+@media (max-width:760px){.layer{grid-template-columns:minmax(0,1fr); gap:8px}.stack .layer:hover,.stack .layer.act{transform:none}}
+
+/* contacto: terminal */
+.term{border:1px solid var(--ink); background:var(--paper-2)}
+.term .bar{display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; padding:9px 14px; border-bottom:1px solid var(--ink)}
+.term .out{margin:0; padding:16px 14px; min-height:220px; max-height:360px; overflow:auto; font:400 13.5px/1.65 var(--f-mono); white-space:pre-wrap; word-break:break-word}
+.term .out .p{color:var(--signal)}
+.term .out .dim{color:var(--ink-2)}
+.term form{display:flex; gap:10px; align-items:center; padding:10px 14px; border-top:1px dashed var(--line)}
+.term form label{font:500 13.5px var(--f-mono); color:var(--signal)}
+.term input{flex:1; min-width:0; background:transparent; border:0; color:var(--ink); font:400 13.5px var(--f-mono)}
+.term input:focus{outline:none}
+.cmds{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+.cmds button{all:unset; cursor:pointer; font:500 12px/1 var(--f-mono); padding:8px 10px; border:1px solid var(--ink); background:var(--paper)}
+.cmds button:hover,.cmds button:focus-visible{background:var(--ink); color:var(--paper)}
+.contact-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.4fr); gap:32px; align-items:start}
+.links{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+.contact-grid .big{margin:0; font:700 clamp(20px,2.6vw,32px)/1.45 var(--f-display); letter-spacing:.22em; text-transform:uppercase; text-wrap:balance}
+.mail{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:20px; font:500 15px var(--f-mono)}
+.mail button{all:unset; cursor:pointer; font:700 10.5px/1 var(--f-display); letter-spacing:.2em; padding:7px 9px; background:var(--ink); color:var(--paper)}
+@media (max-width:860px){.contact-grid{grid-template-columns:minmax(0,1fr)}}
+footer{padding-block:28px 40px; color:var(--ink-2)}
+footer .wrap{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+
+/* clic: marca de impacto */
+.hit{position:fixed; z-index:50; pointer-events:none; width:10px; height:10px; margin:-5px 0 0 -5px; border:1.5px solid var(--signal); animation:hit .7s ease-out forwards}
+.hit span{position:absolute; left:16px; top:-4px; white-space:nowrap; font:500 10px var(--f-mono); color:var(--signal)}
+@keyframes hit{to{width:58px; height:58px; margin:-29px 0 0 -29px; opacity:0}}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important; transition:none!important}
+}
+</style>
 </head>
 <body>
- 
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
- 
-  <nav>
-    <div class="nav-logo">Melany AG</div>
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="#sobre-mi" data-es="Sobre mí" data-en="About">Sobre mí</a></li>
-        <li><a href="#habilidades" data-es="Habilidades" data-en="Skills">Habilidades</a></li>
-        <li><a href="#proyectos" data-es="Proyectos" data-en="Projects">Proyectos</a></li>
-        <li><a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a></li>
-      </ul>
-      <div class="lang-toggle">
-        <button class="lang-btn active" id="btnES" onclick="setLang('es')">ES</button>
-        <button class="lang-btn" id="btnEN" onclick="setLang('en')">EN</button>
-      </div>
+<div class="prog" id="prog"></div>
+
+<header class="top">
+  <div class="wrap">
+    <span class="lbl" data-i="topL">Portafolio</span>
+    <span class="lbl who">Melany Arias Guadamuz</span>
+    <span class="lbl view-lbl" data-i="viewAs">Ver como</span>
+    <div class="seg" role="group" aria-label="Enfoque">
+      <button type="button" id="v-net" aria-pressed="true" data-i="vNet">Redes IP</button>
+      <button type="button" id="v-sw" aria-pressed="false" data-i="vSw">Software</button>
     </div>
-  </nav>
- 
-  <div class="hero">
-    <div class="hero-content">
-      <div class="hero-tag">Costa Rica · UNA</div>
-      <h1>
-        <span id="hero-greeting">Hola, soy</span><br>
-        <span class="name">Melany Arias</span>
-      </h1>
-      <p class="hero-desc" id="hero-desc">
-        Estudiante de Ingeniería en Sistemas apasionada por el desarrollo web. 
-        Me especializo en crear aplicaciones que combinan buena lógica, 
-        diseño cuidado y código limpio.
-      </p>
-      <div class="hero-ctas">
-        <a href="#proyectos" class="btn btn-primary" id="btn-projects">Ver proyectos →</a>
-        <a href="mailto:mela05112004@gmail.com" class="btn btn-secondary" id="btn-contact">Escribime</a>
-      </div>
+    <div class="seg" role="group" aria-label="Idioma">
+      <button type="button" id="l-es" aria-pressed="true">ES</button>
+      <button type="button" id="l-en" aria-pressed="false">EN</button>
     </div>
-    <div class="scroll-line"></div>
   </div>
- 
-  <section id="sobre-mi">
-    <div class="section-label" data-es="Sobre mí" data-en="About me">Sobre mí</div>
-    <h2 class="section-title" data-es="Quién soy" data-en="Who I am">Quién soy</h2>
-    <div class="about-grid reveal">
-      <div class="about-text">
-        <p id="about-p1">
-          Soy estudiante de <strong>Ingeniería en Sistemas en la Universidad Nacional de Costa Rica</strong>, 
-          con un enfoque especial en el desarrollo web fullstack.
-        </p>
-        <p id="about-p2">
-          Me apasiona construir proyectos reales que resuelvan problemas concretos. 
-          Disfruto tanto del <strong>frontend</strong> — crear interfaces atractivas y funcionales — 
-          como del <strong>backend</strong>, donde la lógica y la arquitectura son el desafío.
-        </p>
-        <p id="about-p3">
-          Creo que el buen código no solo funciona, sino que también es legible, 
-          organizado y fácil de mantener.
-        </p>
+</header>
+
+<nav class="trace" aria-label="Secciones">
+  <div class="pkt" id="pkt"></div>
+  <a href="#inicio" data-sec="inicio"><span class="h">1</span><span class="s" data-i="t1">inicio</span></a>
+  <a href="#perfil" data-sec="perfil"><span class="h">2</span><span class="s" data-i="t2">perfil</span></a>
+  <a href="#trabajo" data-sec="trabajo"><span class="h">3</span><span class="s" data-i="t3">trabajo</span></a>
+  <a href="#pila" data-sec="pila"><span class="h">4</span><span class="s" data-i="t4">pila</span></a>
+  <a href="#contacto" data-sec="contacto"><span class="h">5</span><span class="s" data-i="t5">contacto</span></a>
+</nav>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <div>
+        <span class="lbl eyebrow" id="eyebrow"></span>
+        <h1 class="scr" data-i="hero">Sé que estás ocupado, pero si tienes el tiempo, este es mi</h1>
+        <div class="paths">
+          <a class="path a" href="#perfil"><span class="tgt" data-i="pathA">Perfil profesional</span></a>
+          <a class="path b" href="#trabajo"><span class="pre" data-i="ifNot">Si no,</span><span class="tgt" data-i="pathB">Este es mi trabajo</span></a>
+        </div>
+        <p class="intro" id="intro"></p>
       </div>
-      <div class="info-cards">
-        <div class="info-card">
-          <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6L23 9zm6.82 6L12 12.72 5.18 9 12 5.28zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73z"/></svg></div>
-          <div>
-            <div class="info-label" data-es="Universidad" data-en="University">Universidad</div>
-            <div class="info-value">Universidad Nacional de Costa Rica</div>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10zm-4 4H9v-2h6zm4-8H9V5h10z"/></svg></div>
-          <div>
-            <div class="info-label" data-es="Carrera" data-en="Degree">Carrera</div>
-            <div class="info-value" data-es="Ingeniería en Sistemas" data-en="Systems Engineering">Ingeniería en Sistemas</div>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M9.5 6.5v3h-3v-3h3M11 5H5v6h6zm-1.5 9.5v3h-3v-3h3M11 13H5v6h6zm6.5-6.5v3h-3v-3h3M19 5h-6v6h6zm-6 8h1.5v1.5H13zm1.5 1.5H16V16h-1.5zm1.5-1.5h1.5v1.5H16zm-3 3H14.5v1.5H13zm1.5 1.5H16V19h-1.5zm1.5-1.5h1.5v1.5H16zm1.5-1.5H19V16h-1.5zm0 3H19V19h-1.5zm1.5-1.5V19H19v-1.5z"/></svg></div>
-          <div>
-            <div class="info-label" data-es="Enfoque" data-en="Focus">Enfoque</div>
-            <div class="info-value" data-es="Desarrollo Web Fullstack" data-en="Fullstack Web Development">Desarrollo Web Fullstack</div>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
-          <div>
-            <div class="info-label" data-es="Ubicación" data-en="Location">Ubicación</div>
-            <div class="info-value">Costa Rica</div>
-          </div>
-        </div>
+      <div class="netbox" id="netbox">
+        <canvas id="net" aria-label="Topología interactiva del laboratorio SP-Lab. Haz clic para enviar un ping." role="img"></canvas>
+        <i class="corner c1"></i><i class="corner c2"></i><i class="corner c3"></i><i class="corner c4"></i>
+        <div class="tip" id="tip"></div>
+        <div class="cap"><span id="capL"></span><span id="capR"></span></div>
       </div>
     </div>
   </section>
- 
-  <section id="habilidades">
-    <div class="section-label" data-es="Tecnologías" data-en="Technologies">Tecnologías</div>
-    <h2 class="section-title" data-es="Habilidades" data-en="Skills">Habilidades</h2>
-    <div class="skills-grid reveal">
-      <div class="skill-chip"><div class="skill-icon"><img src="https://cdn.simpleicons.org/html5/ffffff" alt="HTML5"></div><div class="skill-name">HTML5</div></div>
-      <div class="skill-chip"><div class="skill-icon"><img src="https://cdn.simpleicons.org/css3/ffffff" alt="CSS3"></div><div class="skill-name">CSS3</div></div>
-      <div class="skill-chip"><div class="skill-icon"><img src="https://cdn.simpleicons.org/javascript/ffffff" alt="JavaScript"></div><div class="skill-name">JavaScript</div></div>
-      <div class="skill-chip"><div class="skill-icon"><img src="https://cdn.simpleicons.org/bootstrap/ffffff" alt="Bootstrap"></div><div class="skill-name">Bootstrap</div></div>
-      <div class="skill-chip"><div class="skill-icon"><img src="https://cdn.simpleicons.org/php/ffffff" alt="PHP"></div><div class="skill-name">PHP</div></div>
-      <div class="skill-chip"><div class="skill-icon"><img src="https://cdn.simpleicons.org/nodedotjs/ffffff" alt="Node.js"></div><div class="skill-name">Node.js</div></div>
-      <div class="skill-chip"><div class="skill-icon"><img src="https://cdn.simpleicons.org/oracle/ffffff" alt="Oracle DB"></div><div class="skill-name">Oracle DB</div></div>
-      <div class="skill-chip"><div class="skill-icon"><img src="https://cdn.simpleicons.org/mysql/ffffff" alt="MySQL"></div><div class="skill-name">MySQL</div></div>
-      <div class="skill-chip"><div class="skill-icon"><img src="https://cdn.simpleicons.org/git/ffffff" alt="Git"></div><div class="skill-name">Git</div></div>
-      <div class="skill-chip"><div class="skill-icon"><img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub"></div><div class="skill-name">GitHub</div></div>
+
+  <section class="s" id="perfil">
+    <div class="wrap">
+      <div class="s-head"><h2 class="scr" data-i="h2a">Perfil profesional</h2><span class="lbl hop" data-i="hop2">salto 2 de 5</span></div>
+      <div class="profile">
+        <p data-i="p1"></p>
+        <p data-i="p2"></p>
+        <p id="p3"></p>
+        <div class="facts">
+          <span class="lbl" id="factsT"></span>
+          <div id="factList" style="display:grid; gap:14px"></div>
+        </div>
+      </div>
+      <div class="folio lbl"><span>Melany AG</span><span>CV 02/05</span></div>
     </div>
   </section>
- 
-  <section id="proyectos">
-    <div class="section-label" data-es="Trabajo" data-en="Work">Trabajo</div>
-    <h2 class="section-title" data-es="Proyectos destacados" data-en="Featured projects">Proyectos destacados</h2>
-    <div class="projects-grid reveal">
- 
-      <a href="https://github.com/Melany05AG/gnr-fanclub" target="_blank" class="project-card">
-        <span class="project-arrow">↗</span>
-        <div class="project-title">GNR Fan Club</div>
-        <p class="project-desc" data-es="Sitio web de club de fans de Guns N' Roses con galería interactiva, reproductor YouTube embebido, registro de fans con validación doble y audio de bienvenida." data-en="Guns N' Roses fan club website with an interactive gallery, embedded YouTube player, double-validated fan registration, and a welcome audio experience.">
-          Sitio web de club de fans de Guns N' Roses con galería interactiva, 
-          reproductor YouTube embebido, registro de fans con validación doble y audio de bienvenida.
-        </p>
-        <div class="project-tags">
-          <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Bootstrap 5</span><span class="tag">JavaScript</span>
-        </div>
-      </a>
- 
-      <a href="https://github.com/Melany05AG/klondike-solitaire" target="_blank" class="project-card">
-        <span class="project-arrow">↗</span>
-        <div class="project-title">Klondike Solitaire</div>
-        <p class="project-desc" data-es="Juego de Solitario completo en el navegador con drag & drop nativo, cronómetro en tiempo real, contador de movimientos y arquitectura orientada a objetos." data-en="Fully browser-based Solitaire game featuring native drag & drop, a real-time timer, move counter, and object-oriented architecture.">
-          Juego de Solitario completo en el navegador con drag &amp; drop nativo, 
-          cronómetro en tiempo real, contador de movimientos y arquitectura orientada a objetos.
-        </p>
-        <div class="project-tags">
-          <span class="tag">JavaScript ES6</span><span class="tag">OOP</span><span class="tag">HTML5</span><span class="tag">CSS3</span>
-        </div>
-      </a>
- 
-      <a href="https://github.com/Melany05AG/rentacar-php-oracle" target="_blank" class="project-card">
-        <span class="project-arrow">↗</span>
-        <div class="project-title">RentaCar</div>
-        <p class="project-desc" data-es="Sistema de reservas de vehículos con roles admin/cliente, CRUD completo, gestión de reservas, reportes y procedimientos almacenados en Oracle." data-en="Vehicle reservation system with admin/client roles, full CRUD operations, booking management, reports, and Oracle stored procedures.">
-          Sistema de reservas de vehículos con roles admin/cliente, CRUD completo, 
-          gestión de reservas, reportes y procedimientos almacenados en Oracle.
-        </p>
-        <div class="project-tags">
-          <span class="tag">PHP</span><span class="tag">Oracle DB</span><span class="tag">Bootstrap 5</span>
-        </div>
-      </a>
- 
+
+  <section class="s" id="trabajo">
+    <div class="wrap">
+      <div class="s-head"><h2 class="scr" data-i="h2b">Este es mi trabajo</h2>
+        <div class="legend"><span class="bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span><span id="legendTxt"></span></div>
+      </div>
+      <ol class="cascade" id="cascade"></ol>
+      <div class="also">
+        <h3 class="lbl" data-i="alsoT">Trayectoria</h3>
+        <div id="ghosts"></div>
+      </div>
+      <div class="folio lbl"><span>Melany AG</span><span>CV 03/05</span></div>
     </div>
   </section>
- 
-  <section id="contacto">
-    <div class="contact-box reveal">
-      <h2 data-es="¡Hablemos!" data-en="Let's talk!">¡Hablemos!</h2>
-      <p data-es="Estoy abierta a oportunidades, colaboraciones o simplemente intercambiar ideas sobre tecnología." data-en="I'm open to opportunities, collaborations, or just exchanging ideas about technology.">
-        Estoy abierta a oportunidades, colaboraciones o simplemente intercambiar ideas sobre tecnología.
-      </p>
-      <div class="contact-links">
-        <a href="mailto:mela05112004@gmail.com" class="btn btn-primary">mela05112004@gmail.com</a>
-        <a href="https://www.linkedin.com/in/melany-arias-guadamuz-aa98a62a0/" target="_blank" class="btn btn-secondary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://github.com/Melany05AG" target="_blank" class="btn btn-secondary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          GitHub
-        </a>
+
+  <section class="s" id="pila">
+    <div class="wrap">
+      <div class="s-head"><h2 class="scr" data-i="h2c">Mi pila, por capas</h2><span class="lbl hop" data-i="hop4">salto 4 de 5</span></div>
+      <div class="stack" id="stack"></div>
+      <div class="folio lbl"><span>Melany AG</span><span>CV 04/05</span></div>
+    </div>
+  </section>
+
+  <section class="s" id="contacto">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <span class="lbl hop" data-i="hop5">salto 5 de 5 · destino</span>
+          <h2 class="big scr" data-i="h2d">¿Hablamos?</h2>
+          <div class="mail"><span id="email">mela05112004@gmail.com</span><button type="button" id="copy" data-i="copy">Copiar</button></div>
+          <div class="links"><a class="gitl" href="https://github.com/Melany05AG" target="_blank" rel="noopener">GitHub ↗</a><a class="gitl" href="https://www.linkedin.com/in/melany-arias-guadamuz-aa98a62a0/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+          <div class="cmds" id="cmds"></div>
+        </div>
+        <div class="term">
+          <div class="bar lbl"><span>melany@alajuela:~</span><span>tty1</span></div>
+          <pre class="out" id="out" aria-live="polite"></pre>
+          <form id="tform"><label for="cmd">$</label><input id="cmd" autocomplete="off" spellcheck="false" placeholder="help"></form>
+        </div>
       </div>
     </div>
   </section>
- 
-  <footer>
-    <p id="footer-text">Diseñado y desarrollado por <span>Melany Arias Guadamuz</span> · 2026</p>
-  </footer>
- 
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
- 
-    const i18n = {
-      es: {
-        'hero-greeting': 'Hola, soy',
-        'hero-desc': 'Estudiante de Ingeniería en Sistemas apasionada por el desarrollo web. Me especializo en crear aplicaciones que combinan buena lógica, diseño cuidado y código limpio.',
-        'btn-projects': 'Ver proyectos →',
-        'btn-contact': 'Escribime',
-        'about-p1': 'Soy estudiante de <strong>Ingeniería en Sistemas en la Universidad Nacional de Costa Rica</strong>, con un enfoque especial en el desarrollo web fullstack.',
-        'about-p2': 'Me apasiona construir proyectos reales que resuelvan problemas concretos. Disfruto tanto del <strong>frontend</strong> — crear interfaces atractivas y funcionales — como del <strong>backend</strong>, donde la lógica y la arquitectura son el desafío.',
-        'about-p3': 'Creo que el buen código no solo funciona, sino que también es legible, organizado y fácil de mantener.',
-        'footer-text': 'Diseñado y desarrollado por <span>Melany Arias Guadamuz</span> · 2026',
-      },
-      en: {
-        'hero-greeting': "Hi, I'm",
-        'hero-desc': "Systems Engineering student passionate about web development. I specialize in building applications that combine solid logic, thoughtful design, and clean code.",
-        'btn-projects': 'View projects →',
-        'btn-contact': 'Get in touch',
-        'about-p1': "I'm a <strong>Systems Engineering student at the Universidad Nacional de Costa Rica</strong>, with a strong focus on fullstack web development.",
-        'about-p2': 'I love building real projects that solve concrete problems. I enjoy both <strong>frontend</strong> work — crafting attractive, functional interfaces — and <strong>backend</strong> development, where logic and architecture are the challenge.',
-        'about-p3': "I believe good code doesn't just work — it's also readable, organized, and easy to maintain.",
-        'footer-text': 'Designed and developed by <span>Melany Arias Guadamuz</span> · 2026',
-      }
-    };
- 
-    function setLang(lang) {
-      document.documentElement.lang = lang;
-      document.getElementById('btnES').classList.toggle('active', lang === 'es');
-      document.getElementById('btnEN').classList.toggle('active', lang === 'en');
- 
-      for (const [id, text] of Object.entries(i18n[lang])) {
-        const el = document.getElementById(id);
-        if (el) el.innerHTML = text;
-      }
- 
-      document.querySelectorAll('[data-' + lang + ']').forEach(el => {
-        el.textContent = el.getAttribute('data-' + lang);
-      });
- 
-      document.title = lang === 'es' ? 'Melany Arias · Portafolio' : 'Melany Arias · Portfolio';
-    }
-  </script>
- 
+</main>
+
+<footer class="lbl"><div class="wrap"><span>Melany Arias Guadamuz · Alajuela, Costa Rica</span><span>Portafolio / 2026</span></div></footer>
+
+<script>
+(() => {
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = s => document.querySelector(s);
+let lang = 'es', view = 'net';
+try { lang = localStorage.getItem('mag-lang') || 'es'; view = localStorage.getItem('mag-view') || 'net'; } catch(e) {}
+const HV = {fullstack:'sw', backend:'sw', redes:'net', networks:'net'};
+const hv = () => HV[location.hash.slice(1).toLowerCase()];
+if (hv()) view = hv();
+addEventListener('hashchange', () => { if (hv() && hv() !== view) setView(hv()); });
+
+/* ------------------------------------------------ textos */
+const T = {
+ es:{ topL:'Portafolio', viewAs:'Ver como', vNet:'Redes IP', vSw:'Full Stack',
+  t1:'inicio', t2:'perfil', t3:'trabajo', t4:'pila', t5:'contacto',
+  hero:'Sé que estás ocupado, pero si tienes el tiempo, este es mi', pathA:'Perfil profesional', ifNot:'Si no,', pathB:'Este es mi trabajo',
+  introNet:'Egresada de Ingeniería en Sistemas. Construyo <b>redes IP/MPLS</b> en laboratorio y software en producción, y documento ambas cosas como si alguien más tuviera que operarlas mañana.',
+  introSw:'Egresada de Ingeniería en Sistemas. Desarrollo aplicaciones <b>full stack</b>: APIs RESTful por capas en ASP.NET Core y Java, frontends en React y bases de datos SQL. También trabajo con Node.js y Python.',
+  netHint:'clic = ping · pasa el cursor por un nodo', h2a:'Perfil profesional', hop2:'salto 2 de 5', hop4:'salto 4 de 5', hop5:'salto 5 de 5 · destino',
+  p1:'Soy egresada de Ingeniería en Sistemas de Información de la Universidad Nacional: completé el plan de estudios en noviembre de 2026 y me gradúo oficialmente en mayo de 2027. Empecé en el desarrollo de software y terminé interesándome por lo que hay debajo: cómo llega cada paquete de un punto a otro.',
+  p2:'En SITEC Software trabajé en una plataforma de cumplimiento AML: integré inicio de sesión único con Keycloak, escribí pruebas antes de cada liberación y diagnostiqué incidentes a partir de logs. Antes, en el Banco de Costa Rica, apoyé la gestión de accesos según las políticas de seguridad de la información del banco.',
+  p3sw:'Lo que más me atrae es el backend: diseño de APIs RESTful, arquitectura por capas, autenticación con tokens, pruebas antes de liberar y diagnóstico con logs. Programo en C#, Java, Node.js, Python y PHP sobre Oracle, PostgreSQL y MySQL, y trabajo en equipos multidisciplinarios con Scrum y Kanban.',
+  p3net:'Hoy construyo redes de proveedor en laboratorio, con IS-IS, MPLS, BGP, L3VPN y EVPN, y las trato como un sistema en producción: plan de direccionamiento, pruebas automáticas, procedimientos de cambio y runbooks de incidentes.',
+  factsT:'Lo verificable', eyeNet:'Enfoque · Ingeniería de redes IP', eyeSw:'Enfoque · Desarrollo full stack y backend', capNet:'AS 65000 · IS-IS + MPLS/LDP', hintNet:'clic = ping · cursor sobre un nodo', capSw:'Arquitectura de mis aplicaciones', hintSw:'clic = petición HTTP · cursor sobre una capa', priv:'Código privado', privUni:'No publicado', jumps:'saltos', layers:'capas', f1:'nodos en mi laboratorio IP/MPLS', f2:'pruebas automatizadas de red', f3:'documentos de políticas organizados en el BCR', f4:'entornos regulados: banca y cumplimiento AML', f5:'graduación oficial, UNA (plan completado en 2026)',
+  h2b:'Este es mi trabajo', legNet:'relevancia para un puesto de redes IP', legSw:'relevancia para un puesto full stack o backend', alsoT:'Trayectoria',
+  kCtx:'Contexto', kRole:'Mi rol', kStack:'Herramientas', kWhat:'Desglose', repo:'Ver repositorio',
+  h2c:'Mi pila, por capas', h2d:'¿Hablamos?', copy:'Copiar', copied:'Copiado',
+  help:'comandos: whoami · contacto · ping melany · enfoque · clear',
+  who:'melany arias guadamuz\nredes ip / software · alajuela, costa rica\ninglés: intermedio · español: nativo',
+  contact:'correo     mela05112004@gmail.com\nteléfono   +506 8479 4419\nlinkedin   linkedin.com/in/melany-arias-guadamuz-aa98a62a0\ngithub     github.com/Melany05AG',
+  pingDone:'--- melany: 3 paquetes enviados, 3 recibidos, 0% de pérdida ---\nestado: abierta a oportunidades en redes IP y desarrollo',
+  focusNet:'enfoque actual: redes IP\nIS-IS · OSPF · BGP · MPLS/LDP · L3VPN · EVPN · IPv6 · documentación y operación',
+  focusSw:'enfoque actual: full stack / backend\nAPIs RESTful · C#/.NET · Java · Node.js · Python · React · SQL · Scrum',
+  unknown:'comando no encontrado: ', boot:'Escribe un comando o usa los botones.'},
+ en:{ topL:'Portfolio', viewAs:'View as', vNet:'IP networks', vSw:'Full Stack',
+  t1:'start', t2:'profile', t3:'work', t4:'stack', t5:'contact',
+  hero:'I know you are busy, but if you have the time, this is my', pathA:'Professional profile', ifNot:'If not,', pathB:'This is my work',
+  introNet:'Information Systems Engineering graduate. I build <b>IP/MPLS networks</b> in the lab and software in production, and I document both as if someone else had to run them tomorrow.',
+  introSw:'Information Systems Engineering graduate. I build <b>full-stack applications</b>: layered RESTful APIs with ASP.NET Core and Java, React frontends and SQL databases. I also work with Node.js and Python.',
+  netHint:'click = ping · hover a node', h2a:'Professional profile', hop2:'hop 2 of 5', hop4:'hop 4 of 5', hop5:'hop 5 of 5 · destination',
+  p1:'I hold a degree in Information Systems Engineering from the National University of Costa Rica: I completed all coursework in November 2026, with official graduation in May 2027. I started in software development and grew interested in what sits underneath it: how each packet gets from one point to another.',
+  p2:'At SITEC Software I worked on an AML compliance platform: I integrated single sign-on with Keycloak, wrote tests before every release and diagnosed incidents from logs. Before that, at Banco de Costa Rica, I supported user access management under the bank’s information security policies.',
+  p3sw:'What draws me most is the backend: RESTful API design, layered architecture, token-based authentication, testing before release and diagnosing with logs. I code in C#, Java, Node.js, Python and PHP on Oracle, PostgreSQL and MySQL, and I work in cross-functional Scrum and Kanban teams.',
+  p3net:'Today I build service provider networks in the lab, with IS-IS, MPLS, BGP, L3VPN and EVPN, and I treat them like a production system: an addressing plan, automated tests, change procedures and incident runbooks.',
+  factsT:'What you can verify', eyeNet:'Focus · IP network engineering', eyeSw:'Focus · Full-stack and backend development', capNet:'AS 65000 · IS-IS + MPLS/LDP', hintNet:'click = ping · hover a node', capSw:'How my applications are built', hintSw:'click = HTTP request · hover a layer', priv:'Private code', privUni:'Not published', jumps:'hops', layers:'layers', f1:'nodes in my IP/MPLS lab', f2:'automated network tests', f3:'policy documents organized at BCR', f4:'regulated environments: banking and AML compliance', f5:'official graduation, UNA (coursework completed in 2026)',
+  h2b:'This is my work', legNet:'relevance for an IP network role', legSw:'relevance for a full-stack or backend role', alsoT:'Background',
+  kCtx:'Context', kRole:'My role', kStack:'Tools', kWhat:'Breakdown', repo:'View repository',
+  h2c:'My stack, layer by layer', h2d:'Shall we talk?', copy:'Copy', copied:'Copied',
+  help:'commands: whoami · contact · ping melany · focus · clear',
+  who:'melany arias guadamuz\nip networks / software · alajuela, costa rica\nenglish: intermediate · spanish: native',
+  contact:'email      mela05112004@gmail.com\nphone      +506 8479 4419\nlinkedin   linkedin.com/in/melany-arias-guadamuz-aa98a62a0\ngithub     github.com/Melany05AG',
+  pingDone:'--- melany: 3 packets transmitted, 3 received, 0% packet loss ---\nstatus: open to IP network and software roles',
+  focusNet:'current focus: IP networks\nIS-IS · OSPF · BGP · MPLS/LDP · L3VPN · EVPN · IPv6 · documentation and operations',
+  focusSw:'current focus: full stack / backend\nRESTful APIs · C#/.NET · Java · Node.js · Python · React · SQL · Scrum',
+  unknown:'command not found: ', boot:'Type a command or use the buttons.'}
+};
+const t = k => T[lang][k] ?? k;
+
+/* ------------------------------------------------ proyectos */
+const P = [
+ { id:'splab', yr:'2026', band:'--teal', rel:{net:3, sw:2},
+   name:{es:'SP-Lab · Red de proveedor IP/MPLS', en:'SP-Lab · IP/MPLS provider network'},
+   sub:{es:'Proyecto personal · laboratorio reproducible', en:'Personal project · reproducible lab'},
+   ctx:{es:'Una red de proveedor de telecomunicaciones a escala de laboratorio: núcleo MPLS, tres clientes empresariales y la documentación con la que se opera una red real.',
+        en:'A lab-scale telecom provider network: an MPLS core, three business customers and the documentation used to run a real network.'},
+   role:{es:'Diseño, implementación, automatización de pruebas y documentación. Proyecto individual.', en:'Design, implementation, test automation and documentation. Solo project.'},
+   stack:['Containerlab','FRRouting','IS-IS','OSPF','BGP','MPLS/LDP','EVPN-VXLAN','IPv6','Python','pytest'],
+   what:{es:['Núcleo IS-IS dual-stack con MPLS/LDP; P2 opera sin BGP.','L3VPN VPNv4/VPNv6 para dos clientes (OSPF y eBGP como PE-CE) y L2VPN con EVPN-VXLAN.','Acceso de cliente con VLAN 802.1Q, STP sobre enlaces redundantes y NAT.','Health check, respaldos con diff, fallas simuladas y runbook de 7 escenarios.'],
+         en:['Dual-stack IS-IS core with MPLS/LDP; P2 runs BGP-free.','VPNv4/VPNv6 L3VPN for two customers (OSPF and eBGP as PE-CE) and EVPN-VXLAN L2VPN.','Customer access with 802.1Q VLANs, STP over redundant links and NAT.','Health check, config backups with diffs, simulated failures and a 7-scenario runbook.']},
+   metrics:[['18',{es:'nodos',en:'nodes'}],['53',{es:'pruebas',en:'tests'}],['6',{es:'documentos técnicos',en:'technical docs'}]],
+   link:'https://github.com/Melany05AG/sp-mpls-lab' },
+ { id:'aml', yr:'2026', band:'--amber', rel:{net:2, sw:3},
+   name:{es:'Sistema de Capacitación AML', en:'AML Training System'},
+   sub:{es:'SITEC Software · práctica profesional', en:'SITEC Software · professional internship'},
+   ctx:{es:'Plataforma web multi-tenant para capacitar a empresas en prevención de legitimación de capitales, un sector regulado.',
+        en:'Multi-tenant web platform for corporate anti-money laundering training, in a regulated sector.'},
+   priv:'priv', role:{es:'Desarrolladora full-stack .NET en el equipo, de julio a noviembre de 2026.', en:'Full-stack .NET developer on the team, July to November 2026.'},
+   stack:['ASP.NET Core MVC','C#','Oracle','Dapper','Keycloak (OIDC)','MSTest','Moq','Serilog'],
+   what:{es:['Inicio de sesión único con Keycloak y OpenID Connect, con autorización por roles en un entorno multi-tenant.','Módulos de cursos, exámenes calificados, progreso e insignias verificables.','Casos de prueba y pruebas unitarias antes de cada liberación.','Diagnóstico y corrección de incidentes con logs de Serilog y consultas a Oracle.'],
+         en:['Single sign-on with Keycloak and OpenID Connect, with role-based authorization across tenants.','Course, graded exam, progress tracking and verifiable badge modules.','Test cases and unit tests before every release.','Incident diagnosis and fixes using Serilog logs and Oracle queries.']} },
+ { id:'micitt', yr:'TFG', band:'--green', rel:{net:1, sw:3},
+   name:{es:'Sistema de Normativa MICITT', en:'MICITT Regulations System'},
+   sub:{es:'Proyecto de graduación con la Municipalidad de Palmares', en:'Capstone project with the Municipality of Palmares'},
+   ctx:{es:'Sistema para gestionar la normativa y los procesos de la municipalidad, con trazabilidad de cada acción.', en:'A system to manage the municipality’s regulations and processes, with every action traceable.'},
+   priv:'privUni', role:{es:'Levantamiento de requerimientos con la municipalidad, modelado de procesos y datos, backend y frontend.', en:'Requirements gathering with the municipality, process and data modeling, backend and frontend.'},
+   stack:['React 18','Vite','ASP.NET Core','C#','MySQL','EF Core','JWT'],
+   what:{es:['API REST por capas con migraciones de EF Core.','Autenticación JWT en cookie HttpOnly y roles USER / ADMIN / SUPERADMIN.','Servicio de auditoría que registra cada acción de usuario.','Dashboard de estadísticas y gestión jerárquica de procesos en React.'],
+         en:['Layered REST API with EF Core migrations.','JWT authentication in an HttpOnly cookie and USER / ADMIN / SUPERADMIN roles.','Audit service that logs every user action.','Statistics dashboard and hierarchical process management in React.']} },
+ { id:'renta', yr:'UNA', band:'--red', rel:{net:1, sw:2},
+   name:{es:'RentaCar', en:'RentaCar'},
+   sub:{es:'Sistema de reserva de vehículos · proyecto académico', en:'Vehicle reservation system · academic project'},
+   ctx:{es:'Sistema web para una empresa de alquiler de vehículos, con la lógica de negocio en procedimientos almacenados de Oracle.', en:'Web system for a car rental company, with business logic in Oracle stored procedures.'},
+   role:{es:'Modelado de la base de datos y desarrollo completo del sistema.', en:'Database modeling and full system development.'},
+   stack:['PHP 8','OCI8','Oracle Database XE','PL/SQL','Bootstrap 5'],
+   what:{es:['Roles de cliente y administrador con sesiones autenticadas.','Reservas con estados pendiente, aprobada y rechazada, e historial por cliente.','CRUD de vehículos con carga de imágenes y gestión de clientes.','Reportes de vehículos más rentados, clientes frecuentes y reservas activas.'],
+         en:['Customer and admin roles with authenticated sessions.','Reservations with pending, approved and rejected states, plus per-customer history.','Vehicle CRUD with image upload, and customer management.','Reports on most-rented vehicles, frequent customers and active reservations.']},
+   link:'https://github.com/Melany05AG/rentacar-php-oracle' },
+ { id:'klondike', yr:'JS', band:'--blue', rel:{net:1, sw:2},
+   name:{es:'Klondike Solitaire', en:'Klondike Solitaire'},
+   sub:{es:'Juego de cartas en el navegador', en:'Browser card game'},
+   ctx:{es:'El solitario clásico, completo y jugable en el navegador, sin dependencias ni servidor.', en:'The classic solitaire, complete and playable in the browser, with no dependencies or server.'},
+   role:{es:'Diseño y programación completa del juego.', en:'Full game design and programming.'},
+   stack:['JavaScript ES6+','POO / OOP','HTML5 Drag & Drop','CSS3'],
+   what:{es:['Toda la lógica en una clase JuegoSolitario con responsabilidades separadas.','Arrastrar y soltar, clic para mover y doble clic para enviar a la fundación.','Cronómetro, contador de movimientos e historial de los últimos 50 estados.','Volteo automático de cartas, reciclaje del mazo y pantalla de victoria.'],
+         en:['All game logic in a JuegoSolitario class with separated responsibilities.','Drag and drop, click to move and double-click to send a card to its foundation.','Timer, move counter and a history of the last 50 states.','Automatic card flipping, deck recycling and a victory screen.']},
+   link:'https://github.com/Melany05AG/klondike-solitaire' },
+ { id:'gnr', yr:'UNA', band:'--violet', rel:{net:1, sw:2},
+   name:{es:'GNR Fan Club', en:'GNR Fan Club'},
+   sub:{es:'Sitio web temático · proyecto de examen', en:'Themed website · exam project'},
+   ctx:{es:'Sitio del club de fans de Guns N’ Roses con galería, registro de fans y contacto.', en:'Guns N’ Roses fan club site with a gallery, fan registration and contact page.'},
+   role:{es:'Desarrollo completo: frontend, backend y base de datos.', en:'Full development: frontend, backend and database.'},
+   stack:['PHP 8','MySQL · MySQLi','Bootstrap 5.3','JavaScript'],
+   what:{es:['Registro de fans con validación en cliente y servidor, y consultas preparadas.','Galería de álbumes y conciertos con modales y reproductor de YouTube embebido.','Video de fondo y audio de bienvenida con HTML5.','Formulario de contacto con validación de campos y de formato de correo.'],
+         en:['Fan registration with client and server validation, and prepared statements.','Album and concert gallery with modals and an embedded YouTube player.','Background video and welcome audio with HTML5.','Contact form with field and email-format validation.']},
+   link:'https://github.com/Melany05AG/gnr-fanclub' }
+];
+const ORDER = {net:['splab','aml','micitt','renta','klondike','gnr'], sw:['aml','micitt','klondike','renta','gnr','splab']};
+const F = {
+ net:[['18',{es:'nodos en mi laboratorio IP/MPLS',en:'nodes in my IP/MPLS lab'}],
+      ['53',{es:'pruebas automatizadas de red',en:'automated network tests'}],
+      ['7',{es:'escenarios de falla en mi runbook de incidentes',en:'failure scenarios in my incident runbook'}],
+      ['2',{es:'cursos CCNAv7 completados (Cisco NetAcad)',en:'CCNAv7 courses completed (Cisco NetAcad)'}],
+      ['200+',{es:'documentos de políticas organizados en el BCR',en:'policy documents organized at BCR'}]],
+ sw:[['5',{es:'meses como desarrolladora full-stack .NET en SITEC',en:'months as a full-stack .NET developer at SITEC'}],
+     ['4',{es:'módulos construidos en la plataforma AML',en:'modules built on the AML platform'}],
+     ['6',{es:'proyectos con código, 4 públicos en GitHub',en:'projects with code, 4 public on GitHub'}],
+     ['3',{es:'motores de base de datos: Oracle, MySQL, PostgreSQL',en:'database engines: Oracle, MySQL, PostgreSQL'}],
+     ['2',{es:'metodologías ágiles en equipo: Scrum y Kanban',en:'agile team methods: Scrum and Kanban'}]]
+};
+const G = [
+ ['2023–', {es:'Asistente estudiantil · UNA',en:'Student assistant · UNA'}, {es:'Soporte a usuarios, gestión documental con Microsoft 365, Scrum',en:'User support, document management with Microsoft 365, Scrum'}],
+ ['2026', {es:'Claude Academy · Anthropic',en:'Claude Academy · Anthropic'}, {es:'14 insignias, incluidos AI Fluency y Claude 101',en:'14 badges, including AI Fluency and Claude 101'}],
+ ['2025', {es:'Diplomado en Desarrollo de Aplicaciones',en:'Associate degree, Software Development'}, {es:'Universidad Nacional de Costa Rica',en:'National University of Costa Rica'}],
+ ['2022', {es:'Pasante · Banco de Costa Rica',en:'Intern · Banco de Costa Rica'}, {es:'Políticas internas y gestión de accesos en un entorno bancario regulado',en:'Internal policies and access management in a regulated bank'}],
+ ['2022', {es:'CCNAv7 · Cisco Networking Academy',en:'CCNAv7 · Cisco Networking Academy'}, {es:'Introducción a redes; conmutación, enrutamiento e inalámbricas',en:'Introduction to Networks; Switching, Routing and Wireless Essentials'}],
+ ['2022', {es:'NDG Linux Essentials',en:'NDG Linux Essentials'}, {es:'Fundación Omar Dengo',en:'Omar Dengo Foundation'}],
+ ['2022', {es:'Técnico en Informática Empresarial',en:'Business Informatics technician'}, {es:'Colegio Técnico Profesional Bolívar',en:'Colegio Técnico Profesional Bolívar'}]
+];
+const LAYERS = {
+ net:[
+ ['L7','--amber',{es:'Aplicación',en:'Application'},['C# / .NET','ASP.NET Core','React','SQL','Keycloak · OIDC']],
+ ['L3','--teal',{es:'Red',en:'Network'},['IPv4','IPv6','IS-IS','OSPF','BGP · MP-BGP','NAT']],
+ ['L2.5','--teal',{es:'MPLS',en:'MPLS'},['MPLS','LDP','L3VPN VPNv4/VPNv6','route reflector']],
+ ['L2','--green',{es:'Enlace',en:'Data link'},['VLAN 802.1Q','troncales / trunks','STP']],
+ ['VXLAN','--green',{es:'Overlay L2 sobre L3',en:'L2 over L3 overlay'},['EVPN','VXLAN']],
+ ['OPS','--red',{es:'Operación',en:'Operations'},['Linux','Containerlab','FRRouting','Python','pytest','Git','logs · runbooks','Scrum · Kanban']]],
+ sw:[
+ ['UI','--violet',{es:'Frontend',en:'Frontend'},['React 18 · hooks','Vite','Next.js','TypeScript','JavaScript ES6+','Razor','Bootstrap','HTML5 · CSS3']],
+ ['API','--amber',{es:'Backend',en:'Backend'},['C# · ASP.NET Core Web API / MVC','Java · Spring Boot','Node.js','Python','PHP 8','APIs RESTful · SOAP','microservicios REST','arquitectura por capas','inyección de dependencias','AWS Lambda · API Gateway']],
+ ['DATA','--blue',{es:'Datos',en:'Data'},['Oracle · PL/SQL','PostgreSQL','MySQL','EF Core · migraciones','Dapper','procedimientos almacenados']],
+ ['AUTH','--red',{es:'Seguridad',en:'Security'},['Keycloak','OpenID Connect · OAuth 2.0','JWT · cookie HttpOnly','RBAC']],
+ ['AGILE','--violet',{es:'Forma de trabajo',en:'Ways of working'},['Scrum','Kanban','levantamiento de requerimientos','UML · modelo entidad-relación','Git']],
+ ['QA','--green',{es:'Calidad',en:'Quality'},['MSTest','Moq','pytest','Serilog','casos de prueba','depuración']],
+ ['NET','--teal',{es:'Lo que hay debajo',en:'What runs underneath'},['TCP/IP','VLAN','OSPF · BGP','MPLS','Linux','Git · CI']]]
+};
+
+/* ------------------------------------------------ render */
+function applyText(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i]').forEach(el => { el.textContent = t(el.dataset.i); el.dataset.final = el.textContent; });
+  const v = view==='net';
+  document.documentElement.dataset.view = view;
+  $('#intro').innerHTML = t(v ? 'introNet' : 'introSw');
+  $('#eyebrow').textContent = t(v ? 'eyeNet' : 'eyeSw');
+  $('#capL').textContent = t(v ? 'capNet' : 'capSw');
+  $('#capR').textContent = t(v ? 'hintNet' : 'hintSw');
+  $('#p3').textContent = t(v ? 'p3net' : 'p3sw');
+  $('#factsT').textContent = t('factsT');
+  $('#factList').innerHTML = F[view].map(([n,l],i)=>`<div class="f" style="animation-delay:${i*60}ms"><span class="n">${n}</span><span class="t">${l[lang]}</span></div>`).join('');
+  $('#legendTxt').textContent = t(view==='net' ? 'legNet' : 'legSw');
+}
+function bars(n){ return [1,2,3].map(i=>`<i class="${i<=n?'on':''}"></i>`).join(''); }
+function renderCascade(){
+  const open = new Set([...document.querySelectorAll('.item.open')].map(e=>e.dataset.id));
+  const box = $('#cascade');
+  const first = new Map([...box.children].map(li=>[li.dataset.id, li.getBoundingClientRect().top]));
+  box.innerHTML = ORDER[view].map(id => {
+    const p = P.find(x=>x.id===id);
+    const m = p.metrics ? `<div class="metrics">${p.metrics.map(([n,l])=>`<div><b>${n}</b>${l[lang]}</div>`).join('')}</div>` : '';
+    const link = p.link ? `<a class="ext" href="${p.link}" target="_blank" rel="noopener">${t('repo')} ↗</a>` : '';
+    const gl = p.link ? `<a class="gitl" href="${p.link}" target="_blank" rel="noopener" aria-label="GitHub: ${p.name[lang]}">GitHub ↗</a>` : `<span class="gitl priv">${t(p.priv)}</span>`;
+    return `<li class="item${open.has(id)?' open':''}" data-id="${id}" style="--band:var(${p.band})">
+      <div class="rowwrap"><button class="row" type="button" aria-expanded="${open.has(id)}" aria-controls="d-${id}">
+        <span class="yr">${p.yr}</span>
+        <span><span class="name">${p.name[lang]}</span><span class="chev" aria-hidden="true">›</span><span class="sub">${p.sub[lang]}</span></span>
+      </button>
+      <span class="side"><span class="bars" title="${t(view==='net'?'legNet':'legSw')}: ${p.rel[view]}/3">${bars(p.rel[view])}</span>${gl}</span></div>
+      <div class="detail" id="d-${id}"><div><div class="dgrid">
+        <span class="sp"></span>
+        <div><span class="k lbl">${t('kCtx')}</span><p>${p.ctx[lang]}</p><span class="k lbl">${t('kRole')}</span><p>${p.role[lang]}</p>
+          <span class="k lbl">${t('kStack')}</span><div class="chips">${p.stack.map(s=>`<span class="chip">${s}</span>`).join('')}</div></div>
+        <div>${m}<span class="k lbl">${t('kWhat')}</span><ul>${p.what[lang].map(w=>`<li>${w}</li>`).join('')}</ul><p></p>${link}</div>
+      </div></div></div></li>`;
+  }).join('');
+  // FLIP: animar el reordenamiento al cambiar de enfoque
+  if (!reduce && first.size) [...box.children].forEach(li => {
+    const dy = (first.get(li.dataset.id) ?? 0) - li.getBoundingClientRect().top;
+    if (dy) li.animate([{transform:`translateY(${dy}px)`},{transform:'none'}],{duration:450, easing:'cubic-bezier(.2,.7,.2,1)'});
+  });
+  box.querySelectorAll('.row').forEach(b => b.addEventListener('click', () => {
+    const li = b.closest('.item'); const o = li.classList.toggle('open'); b.setAttribute('aria-expanded', o);
+  }));
+  box.querySelectorAll('.item').forEach(li => io.observe(li));
+}
+function renderGhosts(){
+  $('#ghosts').innerHTML = G.map(([y,n,s]) => `<div class="ghost"><span class="yr">${y}</span><span><span class="gn">${n[lang]}</span><span class="gs">${s[lang]}</span></span></div>`).join('');
+}
+function renderStack(){
+  const st = $('#stack');
+  st.innerHTML = LAYERS[view].map(([n,c,name,items]) => `<div class="layer" style="--c:var(${c})" tabindex="0">
+    <span class="ln"><i class="sw"></i>${n}</span><span class="lt">${name[lang]}</span>
+    <span class="lc">${items.map(i=>`<span class="chip">${i}</span>`).join('')}</span></div>`).join('');
+  st.querySelectorAll('.layer').forEach(l => {
+    l.addEventListener('focus', () => { st.classList.add('focus'); l.classList.add('act'); });
+    l.addEventListener('blur', () => { st.classList.remove('focus'); l.classList.remove('act'); });
+  });
+}
+function renderCmds(){
+  const c = lang==='es' ? ['whoami','contacto','ping melany','enfoque','help'] : ['whoami','contact','ping melany','focus','help'];
+  $('#cmds').innerHTML = c.map(x=>`<button type="button" data-c="${x}">$ ${x}</button>`).join('');
+  $('#cmds').querySelectorAll('button').forEach(b => b.addEventListener('click', () => run(b.dataset.c)));
+}
+function renderAll(){ applyText(); renderCascade(); renderGhosts(); renderStack(); renderCmds(); }
+
+/* ------------------------------------------------ revelado al hacer scroll */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  const el = e.target;
+  if (el.classList.contains('item')) { el.classList.remove('scan'); void el.offsetWidth; el.classList.add('scan'); }
+  if (el.classList.contains('scr') && !el.dataset.done) { el.dataset.done = 1; scramble(el); }
+  io.unobserve(el);
+}), {threshold:.5});
+const GLYPHS = '01<>/\\|_-=+*#:.';
+function scramble(el){
+  if (reduce) return;
+  const fin = el.dataset.final || el.textContent; let f = 0; const total = 22;
+  const tick = () => {
+    const k = Math.floor(fin.length * f / total);
+    el.textContent = fin.slice(0,k) + fin.slice(k).replace(/\S/g, () => GLYPHS[Math.random()*GLYPHS.length|0]);
+    if (++f <= total) requestAnimationFrame(tick); else el.textContent = fin;
+  };
+  tick();
+}
+
+/* ------------------------------------------------ riel traceroute + progreso */
+const secs = ['inicio','perfil','trabajo','pila','contacto'].map(id => document.getElementById(id));
+const links = [...document.querySelectorAll('.trace a')];
+function onScroll(){
+  const h = document.documentElement.scrollHeight - innerHeight;
+  const pr = h > 0 ? scrollY / h : 0;
+  $('#prog').style.width = (pr*100).toFixed(2) + '%';
+  let cur = 0; secs.forEach((s,i) => { if (s.getBoundingClientRect().top < innerHeight*.45) cur = i; });
+  links.forEach((a,i) => { a.classList.toggle('on', i===cur); a.classList.toggle('done', i<cur); });
+  const a = links[cur], b = links[Math.min(cur+1, links.length-1)];
+  const s0 = secs[cur].getBoundingClientRect(), frac = Math.min(1, Math.max(0, (innerHeight*.45 - s0.top) / s0.height));
+  $('#pkt').style.top = (a.offsetTop + (b.offsetTop - a.offsetTop) * frac + 3) + 'px';
+}
+addEventListener('scroll', onScroll, {passive:true}); addEventListener('resize', onScroll);
+
+/* ------------------------------------------------ marca de clic */
+addEventListener('pointerdown', e => {
+  if (reduce || e.pointerType === 'touch' && e.target.closest('canvas')) return;
+  const d = document.createElement('div'); d.className = 'hit';
+  d.style.left = e.clientX + 'px'; d.style.top = e.clientY + 'px';
+  d.innerHTML = `<span>x:${e.clientX} y:${Math.round(e.clientY + scrollY)}</span>`;
+  document.body.appendChild(d); setTimeout(() => d.remove(), 700);
+});
+
+/* ------------------------------------------------ topología interactiva (hero) */
+const cv = $('#net'), ctx = cv.getContext('2d');
+// Vista Redes: topología real del laboratorio SP-Lab. Vista Software: arquitectura de mis aplicaciones.
+const GRAPHS = {
+ net:{ start:'pe1', nodes:[ // [id, x, y, etiqueta, detalle, núcleo]
+  ['p1',.40,.36,'P1','10.255.0.1',1],['p2',.60,.36,'P2','10.255.0.2',1],
+  ['pe1',.22,.56,'PE1','10.255.0.11',1],['pe2',.78,.56,'PE2','10.255.0.12',1],['pe3',.50,.66,'PE3','10.255.0.13',1],
+  ['ce-a1',.10,.36,'CE-A1','172.16.1.2',0],['ce-b1',.12,.76,'CE-B1','172.16.2.2',0],['ce-b2',.90,.36,'CE-B2','172.16.2.6',0],['h-c1',.90,.78,'H-C1','10.30.0.1',0],
+  ['ce-a2',.40,.86,'CE-A2','172.16.1.6',0],['h-c2',.62,.88,'H-C2','10.30.0.2',0],['sw-a1',.10,.14,'SW-A1','VLAN 10/20',0],['sw-a2',.28,.12,'SW-A2','STP',0],
+  ['h-b1',.06,.92,'H-B1','192.168.50.10',0],['h-b2',.95,.16,'H-B2','198.51.100.130',0]],
+  edges:[['p1','p2'],['pe1','p1'],['pe1','p2'],['pe2','p1'],['pe2','p2'],['pe3','p1'],['pe3','p2'],
+  ['pe1','ce-a1'],['pe1','ce-b1'],['pe2','ce-b2'],['pe2','h-c1'],['pe3','ce-a2'],['pe3','h-c2'],
+  ['ce-a1','sw-a1'],['sw-a1','sw-a2'],['ce-b1','h-b1'],['ce-b2','h-b2']] },
+ sw:{ start:'user', nodes:[
+  ['user',.08,.50,'USUARIO','navegador',1],
+  ['react',.30,.26,'REACT','React 18 · Vite',1],['razor',.30,.74,'RAZOR','MVC · Bootstrap',1],
+  ['api',.52,.50,'API','ASP.NET Core',1],['auth',.52,.12,'AUTH','Keycloak · OIDC · JWT',1],
+  ['svc',.72,.30,'SERVICIOS','cursos · exámenes · insignias',1],['audit',.72,.70,'AUDITORÍA','registro de acciones',1],
+  ['oracle',.92,.20,'ORACLE','Dapper · PL/SQL',1],['mysql',.92,.52,'MYSQL','EF Core',1],['logs',.92,.86,'SERILOG','logs de diagnóstico',1],
+  ['tests',.30,.92,'TESTS','MSTest · Moq',1]],
+  edges:[['user','react'],['user','razor'],['user','auth'],['react','api'],['razor','api'],['api','auth'],['api','svc'],['api','audit'],
+  ['svc','oracle'],['svc','mysql'],['audit','mysql'],['svc','logs'],['audit','logs'],['tests','razor'],['tests','api']] }
+};
+let N=[], E=[], idx={}, adj=[];
+function setGraph(v){ const g=GRAPHS[v]; N=g.nodes; E=g.edges; idx=Object.fromEntries(N.map((n,i)=>[n[0],i]));
+  adj=N.map(()=>[]); E.forEach(([a,b])=>{ adj[idx[a]].push(idx[b]); adj[idx[b]].push(idx[a]); });
+  pulses=[]; lit=new Map(); hover=-1; }
+let W=0, H=0, hover=-1, pulses=[], lit=new Map(), dpr=1;
+setGraph(view);
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function size(){ const r = cv.getBoundingClientRect(); dpr = devicePixelRatio||1; W=r.width; H=r.height; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
+const pos = i => [N[i][1]*W, N[i][2]*H];
+function ping(src){
+  const dist = new Array(N.length).fill(-1); dist[src]=0; const q=[src];
+  while(q.length){ const u=q.shift(); adj[u].forEach(v=>{ if(dist[v]<0){ dist[v]=dist[u]+1; q.push(v); pulses.push({a:u,b:v,t0:performance.now()+dist[u]*260}); } }); }
+  const now = performance.now(); dist.forEach((d,i)=>{ if(d>=0) lit.set(i, now + d*260); });
+  const far = Math.max(...dist);
+  $('#tip').textContent = view==='net'
+    ? `PING ${N[src][3]} (${N[src][4]}) → ${N.length-1} hosts · ${far} ${t('jumps')}`
+    : `${lang==='es'?'GET desde':'GET from'} ${N[src][3]} → 200 OK · ${far} ${t('layers')}`;
+}
+function draw(now){
+  const ink=css('--ink'), line=css('--ink-2'), faint=css('--faint'), sig=css('--signal'), teal=css('--teal');
+  ctx.clearRect(0,0,W,H);
+  ctx.lineWidth=1;
+  E.forEach(([a,b]) => { const [x1,y1]=pos(idx[a]), [x2,y2]=pos(idx[b]);
+    ctx.strokeStyle = (hover>=0 && (idx[a]===hover||idx[b]===hover)) ? ink : faint;
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke(); });
+  pulses = pulses.filter(p => { const k=(now-p.t0)/260; if(k<0) return true; if(k>1) return false;
+    const [x1,y1]=pos(p.a),[x2,y2]=pos(p.b); const x=x1+(x2-x1)*k, y=y1+(y2-y1)*k;
+    ctx.strokeStyle=sig; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x,y); ctx.stroke(); ctx.lineWidth=1;
+    ctx.fillStyle=sig; ctx.fillRect(x-3,y-3,6,6); return true; });
+  ctx.font = '500 10.5px "IBM Plex Mono", monospace';
+  N.forEach((n,i) => { const [x,y]=pos(i); const core = n[5]===1;
+    const t0 = lit.get(i); const glow = t0 ? Math.max(0, 1-(now-t0)/900) : 0;
+    if (t0 && now>=t0 && glow>0){ ctx.strokeStyle=teal; ctx.globalAlpha=glow; ctx.beginPath(); ctx.arc(x,y,8+22*(1-glow),0,7); ctx.stroke(); ctx.globalAlpha=1; }
+    const s = view==='sw' ? 8 : (core?9:6);
+    ctx.fillStyle = (i===hover || (t0 && now>=t0 && glow>0)) ? sig : (core?ink:line);
+    ctx.fillRect(x-s/2,y-s/2,s,s);
+    const tx = x > W*.8 ? x-8-ctx.measureText(n[3]).width : x+8;
+    if (core || i===hover){ ctx.fillStyle = i===hover?ink:line; ctx.fillText(n[3], tx, y-6); }
+    if (i===hover){ ctx.fillStyle=line; const dx = x > W*.8 ? x-8-ctx.measureText(n[4]).width : x+8; ctx.fillText(n[4], dx, y+9); }
+  });
+  if (lit.size && [...lit.values()].every(v => now - v > 900) && !pulses.length) lit.clear();
+  requestAnimationFrame(draw);
+}
+function nearest(e){ const r=cv.getBoundingClientRect(); const mx=e.clientX-r.left, my=e.clientY-r.top;
+  let best=-1, bd=1e9; N.forEach((n,i)=>{ const [x,y]=pos(i); const d=(x-mx)**2+(y-my)**2; if(d<bd){bd=d;best=i;} }); return [best, Math.sqrt(bd)]; }
+cv.addEventListener('pointermove', e => { const [i,d]=nearest(e); hover = d<36 ? i : -1; });
+cv.addEventListener('pointerleave', () => hover=-1);
+cv.addEventListener('click', e => ping(nearest(e)[0]));
+new ResizeObserver(size).observe(cv); size();
+if (reduce) { const once = () => { draw(performance.now()); }; requestAnimationFrame(once); } else requestAnimationFrame(draw);
+// ping automático inicial, para que se vea qué hace
+setTimeout(() => ping(idx[GRAPHS[view].start]), 900);
+
+/* ------------------------------------------------ terminal */
+const out = $('#out');
+function print(txt, cls){ const s=document.createElement('span'); if(cls) s.className=cls; s.textContent=txt+'\n'; out.appendChild(s); out.scrollTop=out.scrollHeight; }
+function run(raw){
+  const c = raw.trim().toLowerCase(); if(!c) return;
+  print('$ '+c, 'p');
+  if (c==='help') print(t('help'));
+  else if (c==='whoami') print(t('who'));
+  else if (c==='contacto'||c==='contact'||c==='cat contacto.txt') print(t('contact'));
+  else if (c==='enfoque'||c==='focus') print(t(view==='net'?'focusNet':'focusSw'));
+  else if (c==='clear') out.textContent='';
+  else if (c.startsWith('ping')) {
+    print('PING melany (alajuela.cr) 56(84) bytes of data.', 'dim');
+    [0,1,2].forEach(i => setTimeout(() => print(`64 bytes from alajuela.cr: icmp_seq=${i+1} ttl=64 time=${(0.3+Math.random()*0.4).toFixed(2)} ms`, 'dim'), reduce?0:(i+1)*380));
+    setTimeout(() => print(t('pingDone')), reduce?0:1300);
+  }
+  else print(t('unknown')+c);
+}
+$('#tform').addEventListener('submit', e => { e.preventDefault(); run($('#cmd').value); $('#cmd').value=''; });
+$('#copy').addEventListener('click', () => {
+  const b=$('#copy'); const ok=()=>{ b.textContent=t('copied'); setTimeout(()=>b.textContent=t('copy'),1500); };
+  const sel=()=>{ const r=document.createRange(); r.selectNodeContents($('#email')); const s=getSelection(); s.removeAllRanges(); s.addRange(r); };
+  try { navigator.clipboard.writeText($('#email').textContent).then(ok, sel); } catch(e){ sel(); }
+});
+
+/* ------------------------------------------------ controles */
+function setLang(l){ lang=l; try{localStorage.setItem('mag-lang',l)}catch(e){}
+  $('#l-es').setAttribute('aria-pressed', l==='es'); $('#l-en').setAttribute('aria-pressed', l==='en'); renderAll(); out.textContent=''; print(t('boot'),'dim'); }
+function setView(v){ view=v; try{localStorage.setItem('mag-view',v)}catch(e){}
+  try { history.replaceState(null, '', '#' + (v==='sw' ? 'fullstack' : 'redes')); } catch(e) {}
+  $('#v-net').setAttribute('aria-pressed', v==='net'); $('#v-sw').setAttribute('aria-pressed', v==='sw');
+  applyText(); renderCascade(); renderStack(); setGraph(v); ping(idx[GRAPHS[v].start]); }
+$('#l-es').onclick=()=>setLang('es'); $('#l-en').onclick=()=>setLang('en');
+$('#v-net').onclick=()=>setView('net'); $('#v-sw').onclick=()=>setView('sw');
+
+$('#l-es').setAttribute('aria-pressed', lang==='es'); $('#l-en').setAttribute('aria-pressed', lang==='en');
+$('#v-net').setAttribute('aria-pressed', view==='net'); $('#v-sw').setAttribute('aria-pressed', view==='sw');
+renderAll(); print(t('boot'),'dim');
+document.querySelectorAll('.scr').forEach(el => io.observe(el));
+onScroll();
+})();
+</script>
+
 </body>
 </html>
- 
