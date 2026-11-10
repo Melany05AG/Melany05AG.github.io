@@ -225,8 +225,8 @@ footer .wrap{display:flex; justify-content:space-between; gap:12px; flex-wrap:wr
     <span class="lbl who">Melany Arias Guadamuz</span>
     <span class="lbl view-lbl" data-i="viewAs">Ver como</span>
     <div class="seg" role="group" aria-label="Enfoque">
-      <button type="button" id="v-net" aria-pressed="true" data-i="vNet">Redes IP</button>
       <button type="button" id="v-sw" aria-pressed="false" data-i="vSw">Software</button>
+      <button type="button" id="v-net" aria-pressed="true" data-i="vNet">Redes IP</button>
     </div>
     <div class="seg" role="group" aria-label="Idioma">
       <button type="button" id="l-es" aria-pressed="true">ES</button>
@@ -330,7 +330,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:12px; flex-wrap:wr
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = s => document.querySelector(s);
 let lang = 'es', view = 'net';
-try { lang = localStorage.getItem('mag-lang') || 'es'; view = localStorage.getItem('mag-view') || 'net'; } catch(e) {}
+try { lang = localStorage.getItem('mag-lang') || 'es'; view = 'sw'; /* siempre abre en Full Stack; #redes abre la vista de redes */ } catch(e) {}
 const HV = {fullstack:'sw', backend:'sw', redes:'net', networks:'net'};
 const hv = () => HV[location.hash.slice(1).toLowerCase()];
 if (hv()) view = hv();
